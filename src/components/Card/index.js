@@ -1,20 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useRef, useContext } from 'react';
 
 import { Container, Label } from './styles';
 
-export default function Card({ data }) {
+export default function Card({ data, index, listIndex }) {
   return (
     <Container>
-      <header>
-        {data.labels.map(label => <Label key={label} color={label} />)}
-      </header>
-      <p>{data.content}</p>
-      { data.user && <img src={data.user} alt=""/> }
+      Card
     </Container>
   );
 }
-
-Card.propTypes = {
-  data: PropTypes.object
-};

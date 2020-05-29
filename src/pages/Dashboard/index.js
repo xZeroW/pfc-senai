@@ -1,9 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
-import Container from './styles';
+import Navbar from 'components/Navbar';
 
 export default function Dashboard() {
-  return(
-    <React.Fragment></React.Fragment>
-  )
+  return (
+    <>
+      <Navbar />
+      <p>Dashboard</p>
+    </>
+  );
 }
