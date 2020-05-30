@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  font-family: "Montserrat", sans-serif;
-  color: #8A05BE;
+  color: #802DD0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -14,6 +13,20 @@ export const Container = styled.div`
 export const Logo = styled.a`
   margin-right: auto;
   font-size: 24px;
+
+  color: #802DD0;
+  text-align: center;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 300ms ease-in-out 0s;
+
+  &&:hover {
+    color: rgba(138, 5, 190, 0.7);
+  }
+
+  &:focus, &:hover, &:visited, &:link, &:active {
+    text-decoration: none;
+  }
 `;
 
 export const RightMenu = styled.nav`
@@ -31,11 +44,15 @@ export const Li = styled(Ul)`
 `;
 
 export const A = styled(Ul)`
-  color: #8A05BE;
+  color: #802DD0;
   text-align: center;
   font-weight: 600;
   text-decoration: none;
   transition: all 300ms ease-in-out 0s;
+
+  &&:hover {
+    color: rgba(138, 5, 190, 0.7);
+  }
 
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;

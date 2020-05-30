@@ -6,11 +6,16 @@ import { LogoWhite } from 'components/Icons/styles';
 export default function Navbar() {
   return (
     <Container>
-      <LogoWhite />
-      <Logo>MyProject</Logo>
+      <LogoWhite width="64px" height="64px" />
+      <Logo href="/">MyProject</Logo>
       <RightMenu>
         <Ul>  
-          <Li as="li"><A as="a" href="/">sdfsd</A></Li>
+          <Li as="li">
+            <A as="a" href="/login">Entrar</A>
+          </Li>
+          <Li as="li">
+            <A as="a" href="/register">Cadastrar</A>
+          </Li>
         </Ul>
       </RightMenu>
     </Container>

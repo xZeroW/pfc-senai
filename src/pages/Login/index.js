@@ -11,7 +11,7 @@ export default class Login extends React.Component {
 
     // redirect to home if already logged in
     if (authenticationService.currentUserValue) { 
-      this.props.history.push('/');
+      this.props.history.push('/dashboard');
     }
 
     document.body.classList.add('bg-gradient-primary');
@@ -31,7 +31,7 @@ export default class Login extends React.Component {
                   <div className="col-lg-6">
                     <div className="p-5">
                       <div className="text-center">
-                        <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                        <h1 className="h4 text-gray-900 mb-4">Olá!</h1>
                       </div>
                       <Formik
                         initialValues={{
@@ -39,8 +39,8 @@ export default class Login extends React.Component {
                           password: ''
                         }}
                         validationSchema={Yup.object().shape({
-                          username: Yup.string().required('Username is required'),
-                          password: Yup.string().required('Password is required')
+                          username: Yup.string().required('Usuário é requerido'),
+                          password: Yup.string().required('Senha é requerida')
                         })}
                         onSubmit={({ username, password }, { setStatus, setSubmitting }) => {
                           setStatus();
@@ -59,15 +59,15 @@ export default class Login extends React.Component {
                         {({ errors, status, touched, isSubmitting }) => (
                           <Form className="user">
                             <div className="form-group">
-                              <Field name="username" type="text" placeholder="Username" className={'form-control form-control-user' + (errors.username && touched.username ? ' is-invalid' : '')} />
+                              <Field name="username" type="text" placeholder="Usuário" className={'form-control form-control-user' + (errors.username && touched.username ? ' is-invalid' : '')} />
                               <ErrorMessage name="username" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group">
-                              <Field name="password" type="password" placeholder="Password" className={'form-control form-control-user' + (errors.password && touched.password ? ' is-invalid' : '')} />
+                              <Field name="password" type="password" placeholder="Senha" className={'form-control form-control-user' + (errors.password && touched.password ? ' is-invalid' : '')} />
                               <ErrorMessage name="password" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group">
-                              <button type="submit" className="btn btn-primary btn-user btn-block" disabled={isSubmitting}>Login</button>
+                              <button type="submit" className="btn btn-primary btn-user btn-block" disabled={isSubmitting}>Entrar</button>
                               {isSubmitting &&
                                     <img alt="" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                               }
@@ -80,10 +80,10 @@ export default class Login extends React.Component {
                       </Formik>
                       <hr />
                       <div className="text-center">
-                        <a className="small" href="/forgot-password">Forgot Password?</a>
+                        <a className="small" href="/forgot-password">Esqueceu a senha?</a>
                       </div>
                       <div className="text-center">
-                        <a className="small" href="/register">Create an Account!</a>
+                        <a className="small" href="/register">Criar cadastro!</a>
                       </div>
                     </div>
                   </div>
