@@ -6,7 +6,7 @@ export default function Home() {
   return(
     <React.Fragment>
       <Navbar />
-      <p>Home</p>
+      <h1>Home</h1>
     </React.Fragment>
   );
 }

@@ -12,6 +12,7 @@ export const Container = styled.div`
 
 export const Logo = styled.a`
   margin-right: auto;
+  margin-left: 10px;
   font-size: 24px;
 
   color: #802DD0;
@@ -57,4 +58,10 @@ export const A = styled(Ul)`
   &:focus, &:hover, &:visited, &:link, &:active {
     text-decoration: none;
   }
+`;
+
+export const UserName = styled.h5`
+  margin-right: 10px;
+  color: #000;
+  text-align: center;
 `;

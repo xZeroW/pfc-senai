@@ -13,6 +13,7 @@
     "react-scripts": "3.0.1",
     "rxjs": "^6.5.5",
     "styled-components": "^4.3.2",
+    "styled-dropdown-component": "^4.0.0",
     "yup": "^0.29.1"
   },
   "scripts": {

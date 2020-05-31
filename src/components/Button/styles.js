@@ -5,7 +5,7 @@ export const BtnRoxo = styled.button.attrs({
 })`
   &&& {
     color: #fff;
-  background-color: #802DD0;
-  border-color: #802DD0;  
+    background-color: #802DD0;
+    border-color: #802DD0;  
   }
 `;
