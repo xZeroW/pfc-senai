@@ -2,8 +2,13 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import ReactLoading from 'react-loading';
 
 import { authenticationService } from '_services/auth.service';
+
+import { BtnRoxo } from 'components/Button/styles';
+import { Link } from 'components/Link/styles';
+import { Ola } from './styles';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -31,7 +36,7 @@ export default class Login extends React.Component {
                   <div className="col-lg-6">
                     <div className="p-5">
                       <div className="text-center">
-                        <h1 className="h4 text-gray-900 mb-4">Olá!</h1>
+                        <Ola>Olá!</Ola>
                       </div>
                       <Formik
                         initialValues={{
@@ -47,7 +52,7 @@ export default class Login extends React.Component {
                           authenticationService.login(username, password)
                             .then(
                               () => {
-                                const { from } = this.props.location.state || { from: { pathname: '/' } };
+                                const { from } = this.props.location.state || { from: { pathname: '/dashboard' } };
                                 this.props.history.push(from);
                               },
                               error => {
@@ -67,9 +72,9 @@ export default class Login extends React.Component {
                               <ErrorMessage name="password" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group">
-                              <button type="submit" className="btn btn-primary btn-user btn-block" disabled={isSubmitting}>Entrar</button>
+                              <BtnRoxo type="submit" className="btn btn-primary btn-user btn-block" disabled={isSubmitting}>Entrar</BtnRoxo>
                               {isSubmitting &&
-                                    <img alt="" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                <ReactLoading type='spin' color='#802DD0' height={24} width={24} />
                               }
                             </div>
                             {status &&
@@ -80,10 +85,10 @@ export default class Login extends React.Component {
                       </Formik>
                       <hr />
                       <div className="text-center">
-                        <a className="small" href="/forgot-password">Esqueceu a senha?</a>
+                        <Link className="small" href="/forgot-password">Esqueceu a senha?</Link>
                       </div>
                       <div className="text-center">
-                        <a className="small" href="/register">Criar cadastro!</a>
+                        <Link className="small" href="/register">Criar cadastro!</Link>
                       </div>
                     </div>
                   </div>

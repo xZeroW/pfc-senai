@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  color: #802DD0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 64px;
-  padding: 5px 10px;
+export const Container = styled.div.attrs({
+  className: 'navbar fixed-top'
+})`
+  background-color: #f8f9fa;
   box-shadow: 0px 0px 5px grey;
 `;
 

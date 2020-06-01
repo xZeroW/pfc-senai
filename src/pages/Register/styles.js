@@ -1,14 +1,19 @@
 import styled from 'styled-components';
 
-export const MdForm = styled.div`
-  width: 100%;
-  max-width: 530px;
-  padding: 15px;
-  margin: auto;
-
-  background-color: #A55EEA;
+export const RegisterBigText = styled.h1`
+  color: #FFF;
+  font-size: 80px;
 `;
 
-export const Row = styled.div`
-  
+export const RegisterCombo = styled.div`
+  padding-top: 1.5rem;
+  margin-left: 5rem;
+`;
+
+export const RegisterFormCard = styled.div.attrs({
+  className: 'rounded'
+})`
+  margin-right: 3rem;
+  padding: 3rem;
+  background-color: #FFF;
 `;

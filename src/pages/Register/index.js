@@ -2,10 +2,12 @@ import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Axios from 'axios';
+import ReactLoading from 'react-loading';
 
 import { authenticationService } from '_services/auth.service';
 import { config } from 'config';
 
+import { RegisterBigText, RegisterCombo, RegisterFormCard } from './styles';
 import { BtnRoxo } from 'components/Button/styles';
 import { Link } from 'components/Link/styles';
 import { LogoWhite } from 'components/Icons/styles';
@@ -26,13 +28,13 @@ export default class Register extends React.Component {
         <div className="card o-hidden border-0 shadow-lg my-5">
           <div className="card-body p-0 rounded" style={{ backgroundColor: '#802DD0' }}>
             <div className="row">
-              <div className="col p-5">
-                <h1 style={{ color: '#FFF' }}>Registre-se, é de graça.</h1>
-                <LogoWhite width="360px" height="360px" />
-              </div>
+              <RegisterCombo className="col">
+                <RegisterBigText>Registre-se, é de graça.</RegisterBigText>
+                <LogoWhite width="320px" height="320px" />
+              </RegisterCombo>
               <div className="col-lg-6">
                 <div className="p-5">
-                  <div className="p-5 rounded" style={{ backgroundColor: '#FFF' }}>
+                  <RegisterFormCard>
                     <Formik
                       initialValues={{
                         email: '',
@@ -86,7 +88,7 @@ export default class Register extends React.Component {
                           <div className="form-group">
                             <BtnRoxo type="submit" disabled={isSubmitting}>Cadastrar</BtnRoxo>
                             {isSubmitting &&
-                              <img alt="" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                              <ReactLoading type='spin' color='#802DD0' height={24} width={24} />
                             }
                           </div>
                           {status &&
@@ -99,7 +101,7 @@ export default class Register extends React.Component {
                     <div className="text-center">
                       <Link className="small" href="/login">Já tem uma conta? Entrar!</Link>
                     </div>
-                  </div>
+                  </RegisterFormCard>
                 </div>
               </div>
             </div>

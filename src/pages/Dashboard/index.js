@@ -1,12 +1,15 @@
 import React from 'react';
 
 import Navbar from 'components/Navbar';
+import { Container, Header } from './styles';
 
 export default function Dashboard() {
   return (
     <>
       <Navbar />
-      <p>Dashboard</p>
+      <Container>
+        <Header>Seus projetos</Header>
+      </Container>
     </>
   );
 }
