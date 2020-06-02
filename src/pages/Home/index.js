@@ -2,7 +2,7 @@ import React from 'react';
 
 import Navbar from 'components/Navbar';
 
-import { Container } from './styles';
+import { Container } from 'components/Grid/styles';
 
 export default function Home() {
   return(

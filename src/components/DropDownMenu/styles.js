@@ -16,7 +16,8 @@ export const DropDownButton = styled.button.attrs(props => ({
 export const DropDownMenuItem = styled.a.attrs({
   className: 'dropdown-item'
 })`
-  &:hover {
-    color: #802DD0
+  &&&&:hover {
+    color: #FFF;
+    background-color: #802DD0
   }
 `;
