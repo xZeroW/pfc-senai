@@ -20,21 +20,21 @@ export const LogoWhite = styled.img.attrs({
   height: ${(props) => props.height};
 `;
 
-export const LogoLixeira = styled.div.attrs({
+export const LogoLixeira = styled.img.attrs({
   src: ImgLixeira,
 })`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
 `;
 
-export const LogoLupa = styled.div.attrs({
+export const LogoLupa = styled.img.attrs({
   src: ImgLupa,
 })`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
 `;
 
-export const LogoCalendario = styled.div.attrs({
+export const LogoCalendario = styled.img.attrs({
   src: ImgCalendario,
 })`
   width: ${(props) => props.width};

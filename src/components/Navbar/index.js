@@ -25,7 +25,7 @@ export default function Navbar() {
       <RightMenu>
         { currentUser ?
           <DropDown>
-            <DropDownButton bgColor='#802DD0' data-offset="10,20" onClick={() => setHidden(!hidden)}>
+            <DropDownButton bgColor='#802DD0' onClick={() => setHidden(!hidden)}>
               {currentUser.username}
             </DropDownButton>
             <DropdownMenu right hidden={hidden} toggle={() => setHidden(!hidden)}>
