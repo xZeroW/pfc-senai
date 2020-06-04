@@ -9,7 +9,7 @@ import { config } from 'config';
 
 import { RegisterBigText, RegisterCombo, RegisterFormCard } from './styles';
 import { BtnRoxo } from 'components/Button/styles';
-import { Link } from 'components/Link/styles';
+import { StyledLink } from 'components/Link/styles';
 import { LogoWhite } from 'components/Icons/styles';
 
 export default class Register extends React.Component {
@@ -92,14 +92,14 @@ export default class Register extends React.Component {
                             }
                           </div>
                           {status &&
-                            <div className={'alert alert-success'}>{status} <Link href='/login'>Entrar</Link></div>
+                            <div className={'alert alert-success'}>{status} <StyledLink href='/login'>Entrar</StyledLink></div>
                           }
                         </Form>
                       )}
                     </Formik>
                     <hr />
                     <div className="text-center">
-                      <Link className="small" href="/login">Já tem uma conta? Entrar!</Link>
+                      <StyledLink className="small" href="/login">Já tem uma conta? Entrar!</StyledLink>
                     </div>
                   </RegisterFormCard>
                 </div>

@@ -7,7 +7,7 @@ import ReactLoading from 'react-loading';
 import { authenticationService } from '_services/auth.service';
 
 import { BtnRoxo } from 'components/Button/styles';
-import { Link } from 'components/Link/styles';
+import { StyledLink } from 'components/Link/styles';
 import { Ola } from './styles';
 
 export default class Login extends React.Component {
@@ -85,10 +85,10 @@ export default class Login extends React.Component {
                       </Formik>
                       <hr />
                       <div className="text-center">
-                        <Link className="small" href="/forgot-password">Esqueceu a senha?</Link>
+                        <StyledLink className="small" href="/forgot-password">Esqueceu a senha?</StyledLink>
                       </div>
                       <div className="text-center">
-                        <Link className="small" href="/register">Criar cadastro!</Link>
+                        <StyledLink className="small" href="/register">Criar cadastro!</StyledLink>
                       </div>
                     </div>
                   </div>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import ImgTransparent from 'assets/img/Logo.svg';
 import ImgWhite from 'assets/img/Logo-2.svg';
@@ -13,7 +14,7 @@ export const LogoTransparent = styled.img.attrs({
   height: ${(props) => props.height};
 `;
 
-export const LogoWhite = styled.img.attrs({
+export const LogoWhite = styled(motion.img).attrs({
   src: ImgWhite,
 })`
   width: ${(props) => props.width};

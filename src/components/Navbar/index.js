@@ -1,12 +1,13 @@
 import React, {useState } from 'react';
-import { DropDown, DropDownButton, DropDownMenuItem } from 'components/DropDownMenu/styles';
 import { DropdownMenu, DropdownDivider } from 'styled-dropdown-component';
 
 import { authenticationService } from '_services/auth.service';
 import { history } from '_helpers/history';
 
+import { DropDown, DropDownButton, DropDownMenuItem } from 'components/DropDownMenu/styles';
 import { Container, Logo, RightMenu, Ul, Li, A } from './styles';
 import { LogoWhite } from 'components/Icons/styles';
+import { NoBlueLink } from 'components/Link/styles';
 
 export default function Navbar() {
 
@@ -20,7 +21,7 @@ export default function Navbar() {
 
   return (
     <Container>
-      <LogoWhite width="64px" height="64px" alt="MyProjectIcon" />
+      <LogoWhite initial={{ x: '-100vw' }} animate={{ x: 0 }} transition={{ type: 'spring', stiffness: 65 }} width="64px" height="64px" alt="MyProjectIcon" />
       <Logo href="/">MyProject</Logo>
       <RightMenu>
         { currentUser ?
@@ -29,10 +30,16 @@ export default function Navbar() {
               {currentUser.username}
             </DropDownButton>
             <DropdownMenu right hidden={hidden} toggle={() => setHidden(!hidden)}>
-              <DropDownMenuItem href="/dashboard">Meus projetos</DropDownMenuItem>
-              <DropDownMenuItem>Outra ação</DropDownMenuItem>
+              <NoBlueLink to="/dashboard">
+                <DropDownMenuItem>Meus projetos</DropDownMenuItem>
+              </NoBlueLink>
+              <NoBlueLink to="#">
+                <DropDownMenuItem>Outro link</DropDownMenuItem>
+              </NoBlueLink>
               <DropdownDivider />
-              <DropDownMenuItem href="#" onClick={logout}>Sair</DropDownMenuItem>
+              <NoBlueLink to="/dashboard" onClick={logout}>
+                <DropDownMenuItem>Sair</DropDownMenuItem>
+              </NoBlueLink>
             </DropdownMenu>
           </DropDown>
           :

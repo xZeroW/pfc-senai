@@ -6,6 +6,7 @@
     "axios": "^0.19.2",
     "bootstrap-css-only": "^4.4.1",
     "formik": "^2.1.4",
+    "framer-motion": "^1.11.0",
     "mdbreact": "^4.27.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
