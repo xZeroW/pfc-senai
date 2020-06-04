@@ -20,8 +20,12 @@ export default function Navbar() {
   }
 
   return (
-    <Container>
-      <LogoWhite initial={{ x: '-100vw' }} animate={{ x: 0 }} transition={{ type: 'spring', stiffness: 65 }} width="64px" height="64px" alt="MyProjectIcon" />
+    <Container 
+      initial={{ y: '100vw' }}
+      transition={{ type: 'spring', duration: 2, stiffness: 50 }}
+      animate={{ y:0 }}
+    >
+      <LogoWhite width="64px" height="64px" alt="MyProjectIcon" />
       <Logo to="/">MyProject</Logo>
       <RightMenu>
         { currentUser ?

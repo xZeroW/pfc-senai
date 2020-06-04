@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-export const Card = styled.div.attrs({
+export const Card = styled(motion.div).attrs({
   className: 'card'
 })``;
 

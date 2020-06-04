@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardText, MDBCardTitle, MDBIcon } from 'mdbreact';
+import { MDBRow, MDBCol, MDBCardBody, MDBCardText, MDBCardTitle, MDBIcon } from 'mdbreact';
 
 import { LogoLixeira} from 'components/Icons/styles';
+import { Card } from './styles';
 
 export function CardProjeto({title, description}) {
   return(
     <MDBCol md="3">
-      <MDBCard className="mb-4">
+      <Card className="mb-4" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }}>
         <MDBCardBody>
           <MDBRow>
             <MDBCol size="10">
@@ -30,7 +31,7 @@ export function CardProjeto({title, description}) {
             </h5>
           </a>
         </MDBCardBody>
-      </MDBCard>
+      </Card>
     </MDBCol>
   );
 }

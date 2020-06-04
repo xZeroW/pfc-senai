@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-export const Container = styled.div.attrs({
+export const Container = styled(motion.div).attrs({
   className: 'navbar fixed-top'
 })`
   background-color: #f8f9fa;
