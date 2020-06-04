@@ -22,7 +22,7 @@ export default function Navbar() {
   return (
     <Container>
       <LogoWhite initial={{ x: '-100vw' }} animate={{ x: 0 }} transition={{ type: 'spring', stiffness: 65 }} width="64px" height="64px" alt="MyProjectIcon" />
-      <Logo href="/">MyProject</Logo>
+      <Logo to="/">MyProject</Logo>
       <RightMenu>
         { currentUser ?
           <DropDown>
@@ -37,7 +37,7 @@ export default function Navbar() {
                 <DropDownMenuItem>Outro link</DropDownMenuItem>
               </NoBlueLink>
               <DropdownDivider />
-              <NoBlueLink to="/dashboard" onClick={logout}>
+              <NoBlueLink to="#" onClick={logout}>
                 <DropDownMenuItem>Sair</DropDownMenuItem>
               </NoBlueLink>
             </DropdownMenu>
@@ -45,10 +45,10 @@ export default function Navbar() {
           :
           <Ul>  
             <Li as="li">
-              <A as="a" href="/login">Entrar</A>
+              <A to="/login">Entrar</A>
             </Li>
             <Li as="li">
-              <A as="a" href="/register">Cadastrar</A>
+              <A to="/register">Cadastrar</A>
             </Li>
           </Ul>
         }

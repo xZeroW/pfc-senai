@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif !important;
   }
 
   html, #root {
@@ -15,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Roboto', sans-serif;
+    
     -webkit-font-smoothing: antialiased !important;
   }
 `;

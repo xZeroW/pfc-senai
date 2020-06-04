@@ -11,7 +11,9 @@ export const NoBlueLink = styled(Link)`
 `;
 
 export const StyledLink = styled(Link)`
-  &&& {
+  color: #802DD0;
+
+  &:hover {
     color: #802DD0;
     text-decoration: none;
   }

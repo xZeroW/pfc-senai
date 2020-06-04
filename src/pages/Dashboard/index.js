@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Navbar from 'components/Navbar';
 import { CardProjeto } from 'components/Card';
 
 import { Header } from './styles';
@@ -14,7 +13,6 @@ export default function Dashboard() {
 
   return (
     <>
-      <Navbar />
       <Container>
         <Row>
           <Col12>

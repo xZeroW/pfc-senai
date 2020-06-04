@@ -4,6 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ReactLoading from 'react-loading';
 
+import { history } from '_helpers/history';
 import { authenticationService } from '_services/auth.service';
 
 import { BtnRoxo } from 'components/Button/styles';
@@ -18,8 +19,6 @@ export default class Login extends React.Component {
     if (authenticationService.currentUserValue) { 
       this.props.history.push('/dashboard');
     }
-
-    document.body.classList.add('bg-gradient-primary');
   }
 
   render() {
@@ -52,8 +51,7 @@ export default class Login extends React.Component {
                           authenticationService.login(username, password)
                             .then(
                               () => {
-                                const { from } = this.props.location.state || { from: { pathname: '/dashboard' } };
-                                this.props.history.push(from);
+                                history.go(0);
                               },
                               error => {
                                 setSubmitting(false);
@@ -85,10 +83,10 @@ export default class Login extends React.Component {
                       </Formik>
                       <hr />
                       <div className="text-center">
-                        <StyledLink className="small" href="/forgot-password">Esqueceu a senha?</StyledLink>
+                        <StyledLink className="small" to="/forgot-password">Esqueceu a senha?</StyledLink>
                       </div>
                       <div className="text-center">
-                        <StyledLink className="small" href="/register">Criar cadastro!</StyledLink>
+                        <StyledLink className="small" to="/register">Criar cadastro!</StyledLink>
                       </div>
                     </div>
                   </div>

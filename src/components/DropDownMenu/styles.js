@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const DropDown = styled.div.attrs({
-  className: 'btn-group'
+  className: 'dropdown'
 })``;
 
 export const DropDownButton = styled.button.attrs({

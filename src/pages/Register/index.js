@@ -92,14 +92,14 @@ export default class Register extends React.Component {
                             }
                           </div>
                           {status &&
-                            <div className={'alert alert-success'}>{status} <StyledLink href='/login'>Entrar</StyledLink></div>
+                            <div className={'alert alert-success'}>{status} <StyledLink to='/login'>Entrar</StyledLink></div>
                           }
                         </Form>
                       )}
                     </Formik>
                     <hr />
                     <div className="text-center">
-                      <StyledLink className="small" href="/login">Já tem uma conta? Entrar!</StyledLink>
+                      <StyledLink className="small" to="/login">Já tem uma conta? Entrar!</StyledLink>
                     </div>
                   </RegisterFormCard>
                 </div>
