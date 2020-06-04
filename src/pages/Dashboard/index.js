@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 import { CardProjeto } from 'components/Card';
 
@@ -11,8 +12,24 @@ export default function Dashboard() {
 
   const data = loadProjetos();
 
+  const pageTransitions = {
+    in: {
+      opacity: 1,
+      y: 0
+    },
+    out: {
+      opacity: 0,
+      y: '-100%'
+    }
+  };
+
   return (
-    <>
+    <motion.div
+      initial='out'
+      exit='out'
+      animate='in'
+      variants={pageTransitions}
+    >
       <Container>
         <Row>
           <Col12>
@@ -30,6 +47,6 @@ export default function Dashboard() {
           )}
         </Row>
       </Container>
-    </>
+    </motion.div>
   );
 }
