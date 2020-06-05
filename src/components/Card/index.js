@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MDBRow, MDBCol, MDBCardBody, MDBCardText, MDBCardTitle, MDBIcon } from 'mdbreact';
+import { RiArrowRightSLine } from 'react-icons/ri';
+import { MDBRow, MDBCol, MDBCardBody, MDBCardText, MDBCardTitle } from 'mdbreact';
 
+import { BlackLink } from 'components/Link/styles';
 import { LogoLixeira} from 'components/Icons/styles';
 import { Card } from './styles';
 
@@ -25,10 +27,10 @@ export function CardProjeto({title, description}) {
             {description}
           </MDBCardText>
           <a href='#!' className='black-text d-flex justify-content-end'>
-            <h5>
+            <BlackLink>
                 Acessar
-              <MDBIcon icon='angle-double-right' className='ml-2' />
-            </h5>
+              <RiArrowRightSLine />
+            </BlackLink>
           </a>
         </MDBCardBody>
       </Card>

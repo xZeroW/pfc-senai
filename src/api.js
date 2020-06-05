@@ -28,7 +28,7 @@ export function loadTarefas() {
     {
       'id': 11,
       'title': 'Fhjavfhve',
-      'deion': 'Dgavbrv raprvhoaerv rvbaoirverii',
+      'description': 'Dgavbrv raprvhoaerv rvbaoirverii',
       'completion_date': '2020-05-25T17:24:48.788Z',
       'status': 1,
       'createdAt': '2020-05-26T17:11:13.753Z',
@@ -37,8 +37,8 @@ export function loadTarefas() {
     },
     {
       'id': 12,
-      'title': 'Fhjavfhve',
-      'deion': 'Dgavbrv raprvhoaerv rvbaoirverii',
+      'title': 'sdfgdsf',
+      'description': 'Dgavbrv raprvhoaerv rvbaoirverii',
       'completion_date': '2020-05-25T17:24:48.788Z',
       'status': 1,
       'createdAt': '2020-05-26T17:11:16.881Z',
@@ -48,7 +48,7 @@ export function loadTarefas() {
     {
       'id': 15,
       'title': 'TTT',
-      'deion': 'Dgavbrv raprvhoaerv rvbaoirverii',
+      'description': 'Dgavbrv raprvhoaerv rvbaoirverii',
       'completion_date': '2020-05-25T17:24:48.788Z',
       'status': 0,
       'createdAt': '2020-05-26T17:22:51.073Z',

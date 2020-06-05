@@ -10,6 +10,15 @@ export const NoBlueLink = styled(Link)`
   }
 `;
 
+export const BlackLink = styled(Link)`
+  color: #000;
+
+  &:hover {
+    color: #000;
+    text-decoration: none;
+  }
+`;
+
 export const StyledLink = styled(Link)`
   color: #802DD0;
 

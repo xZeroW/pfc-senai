@@ -11,6 +11,7 @@ import Login from 'pages/Login';
 import Register from 'pages/Register';
 import Dashboard from 'pages/Dashboard';
 import Navbar from 'components/Navbar';
+import Project from 'pages/Project';
 
 // const NavRoute = ({exact, path, component: Component}) => (
 //   <Route exact={exact} path={path} render={(props) => (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/project/:id" component={Project} />
           {/* <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route exact path="/builds" component={BuildList} />
