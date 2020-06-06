@@ -26,12 +26,12 @@ export function CardProjeto({title, description}) {
           <MDBCardText>
             {description}
           </MDBCardText>
-          <a href='#!' className='black-text d-flex justify-content-end'>
-            <BlackLink>
+          <div className='black-text d-flex justify-content-end'>
+            <BlackLink to="#">
                 Acessar
               <RiArrowRightSLine />
             </BlackLink>
-          </a>
+          </div>
         </MDBCardBody>
       </Card>
     </MDBCol>

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { Switch, Route  } from 'react-router-dom';
+import { Switch, Route, useLocation  } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 import GlobalStyle from 'styles/global';
@@ -23,12 +23,15 @@ import Project from 'pages/Project';
 // );
 
 function App() {
+
+  const location = useLocation();
+
   return (
     <>
       <GlobalStyle />
       <Navbar/>
       <AnimatePresence exitBeforeEnter>
-        <Switch>
+        <Switch location={location} key={location.key}>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />

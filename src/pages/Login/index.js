@@ -53,7 +53,7 @@ export default class Login extends React.Component {
                             .max(16, 'Limite de 16 caracteres atingido.')
                             .required('Senha é requerida.')
                         })}
-                        onSubmit={( username, password, setStatus, setSubmitting ) => {
+                        onSubmit={( { username, password }, { setStatus, setSubmitting } ) => {
                           setStatus();
                           authenticationService.login(username, password)
                             .then(
