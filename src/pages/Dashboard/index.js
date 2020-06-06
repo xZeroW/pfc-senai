@@ -1,4 +1,5 @@
 import React from 'react';
+import { MDBInput } from 'mdbreact';
 import { motion } from 'framer-motion';
 
 import { CardProjeto } from 'components/Card';
@@ -37,7 +38,9 @@ export default function Dashboard() {
           </Col12>
         </Row>
         <Row>
-          <Col8>Procurar</Col8>
+          <Col8>
+            <MDBInput label="Material input" />
+          </Col8>
           <Col4>novo projeto</Col4>
         </Row>
         <Separator />

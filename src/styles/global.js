@@ -16,7 +16,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    
     -webkit-font-smoothing: antialiased !important;
   }
 `;

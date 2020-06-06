@@ -43,10 +43,17 @@ export default class Login extends React.Component {
                           password: ''
                         }}
                         validationSchema={Yup.object().shape({
-                          username: Yup.string().required('Usuário é requerido'),
-                          password: Yup.string().required('Senha é requerida')
+                          username: Yup.string()
+                            .min(6, 'Precisa ter mais que 6 caracteres.')
+                            .max(10, 'Limite de 10 caracteres atingido.')
+                            .matches(/^[A-Za-z0-9]+$/, 'Caracteres especiais não são permitidos.')
+                            .required('Usuário é requerido.'),
+                          password: Yup.string()
+                            .min(8, 'Precisa ter mais que 6 caracteres.')
+                            .max(16, 'Limite de 16 caracteres atingido.')
+                            .required('Senha é requerida.')
                         })}
-                        onSubmit={({ username, password }, { setStatus, setSubmitting }) => {
+                        onSubmit={( username, password, setStatus, setSubmitting ) => {
                           setStatus();
                           authenticationService.login(username, password)
                             .then(
@@ -60,7 +67,7 @@ export default class Login extends React.Component {
                             );
                         }}>
                         {({ errors, status, touched, isSubmitting }) => (
-                          <Form className="user">
+                          <Form>
                             <div className="form-group">
                               <Field name="username" type="text" placeholder="Usuário" className={'form-control form-control-user' + (errors.username && touched.username ? ' is-invalid' : '')} />
                               <ErrorMessage name="username" component="div" className="invalid-feedback" />
@@ -70,7 +77,7 @@ export default class Login extends React.Component {
                               <ErrorMessage name="password" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group">
-                              <BtnRoxo type="submit" className="btn btn-primary btn-user btn-block" disabled={isSubmitting}>Entrar</BtnRoxo>
+                              <BtnRoxo type="submit" disabled={isSubmitting}>Entrar</BtnRoxo>
                               {isSubmitting &&
                                 <ReactLoading type='spin' color='#802DD0' height={24} width={24} />
                               }
