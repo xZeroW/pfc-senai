@@ -29,7 +29,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Navbar/>
+      <Navbar />
       <AnimatePresence exitBeforeEnter>
         <Switch location={location} key={location.key}>
           <Route exact path="/" component={Home} />

@@ -3,6 +3,7 @@ import { MDBInput } from 'mdbreact';
 import { motion } from 'framer-motion';
 
 import { CardProjeto } from 'components/Card';
+import Modal from 'components/Modal';
 
 import { Header } from './styles';
 import { Container, Row, Col12, Col8, Col4, Separator } from 'components/Grid/styles';

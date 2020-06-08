@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const Container = styled(motion.div).attrs({
   className: 'navbar fixed-top'
 })`
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   box-shadow: 0px 0px 5px grey;
 `;
 
