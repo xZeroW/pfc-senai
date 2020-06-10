@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 import { MDBInput } from 'mdbreact';
 import { motion } from 'framer-motion';
+
+import { authHeader } from '_helpers/auth-header';
+import { config } from 'config';
 
 import { CardProjeto } from 'components/Card';
 import Modal from 'components/Modal';
@@ -8,11 +12,19 @@ import Modal from 'components/Modal';
 import { Header } from './styles';
 import { Container, Row, Col12, Col8, Col4, Separator } from 'components/Grid/styles';
 
-import { loadProjetos } from 'api';
-
 export default function Dashboard() {
 
-  const data = loadProjetos();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    Axios.get(`${config.API_URL}/projects`, { headers: authHeader() })
+      .then((res) => {
+        setData(data.concat(res.data));
+      })
+      .catch(function () {
+        // handle error
+      });
+  }, [data]);
 
   const pageTransitions = {
     in: {
@@ -46,8 +58,8 @@ export default function Dashboard() {
         </Row>
         <Separator />
         <Row>
-          {data.map(({title, id, createdAt, description}) =>
-            <CardProjeto key={id} title={title} id={id} createdAt={createdAt} description={description} />
+          {data.map(({id, title, description}) =>
+            <CardProjeto key={id} title={title} description={description} />
           )}
         </Row>
       </Container>

@@ -31,7 +31,7 @@ export default function Navbar() {
         { currentUser ?
           <DropDown>
             <DropDownButton bgColor='#802DD0' onClick={() => setHidden(!hidden)}>
-              {currentUser.username}
+              {currentUser.user.first_name} {currentUser.user.last_name}
             </DropDownButton>
             <DropdownMenu right hidden={hidden} toggle={() => setHidden(!hidden)}>
               <NoBlueLink to="/dashboard">

@@ -39,10 +39,8 @@ export function CardProjeto({title, description}) {
 }
 
 CardProjeto.propTypes = {
-  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  createdAt: PropTypes.string.isRequired
+  description: PropTypes.string.isRequired
 };
 
 export function CardTarefa() {

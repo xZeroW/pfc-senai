@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
@@ -50,7 +51,7 @@ export default class Login extends React.Component {
                 <div className="card-body p-0">
                   {/* <!-- Nested Row within Card Body --> */}
                   <div className="row">
-                    <div className="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                    <div className="col-lg-6 d-none d-lg-block"></div>
                     <div className="col-lg-6">
                       <div className="p-5">
                         <div className="text-center">
@@ -58,23 +59,22 @@ export default class Login extends React.Component {
                         </div>
                         <Formik
                           initialValues={{
-                            username: '',
+                            email: '',
                             password: ''
                           }}
                           validationSchema={Yup.object().shape({
-                            username: Yup.string()
-                              .min(6, 'Precisa ter mais que 6 caracteres.')
-                              .max(10, 'Limite de 10 caracteres atingido.')
-                              .matches(/^[A-Za-z0-9]+$/, 'Caracteres especiais não são permitidos.')
-                              .required('Usuário é requerido.'),
+                            email: Yup.string()
+                              .email('Insira um e-mail válido.')
+                              .matches(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Insira um e-mail válido.')
+                              .required('E-mail é requerido.'),
                             password: Yup.string()
                               .min(8, 'Precisa ter mais que 6 caracteres.')
                               .max(16, 'Limite de 16 caracteres atingido.')
                               .required('Senha é requerida.')
                           })}
-                          onSubmit={( { username, password }, { setStatus, setSubmitting } ) => {
+                          onSubmit={( { email, password }, { setStatus, setSubmitting } ) => {
                             setStatus();
-                            authenticationService.login(username, password)
+                            authenticationService.login(email, password)
                               .then(
                                 () => {
                                   history.go(0);
@@ -88,8 +88,8 @@ export default class Login extends React.Component {
                           {({ errors, status, touched, isSubmitting }) => (
                             <Form>
                               <div className="form-group">
-                                <Field name="username" type="text" placeholder="Usuário" className={'form-control form-control-user' + (errors.username && touched.username ? ' is-invalid' : '')} />
-                                <ErrorMessage name="username" component="div" className="invalid-feedback" />
+                                <Field name="email" type="text" placeholder="E-mail" className={'form-control form-control-user' + (errors.email && touched.email ? ' is-invalid' : '')} />
+                                <ErrorMessage name="email" component="div" className="invalid-feedback" />
                               </div>
                               <div className="form-group">
                                 <Field name="password" type="password" placeholder="Senha" className={'form-control form-control-user' + (errors.password && touched.password ? ' is-invalid' : '')} />
