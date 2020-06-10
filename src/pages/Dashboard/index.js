@@ -24,7 +24,7 @@ export default function Dashboard() {
       .catch(function () {
         // handle error
       });
-  }, [data]);
+  }, []);
 
   const pageTransitions = {
     in: {
