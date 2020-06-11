@@ -43,12 +43,12 @@ export default function Modal({ showModal, setShowModal }) {
                   status: Yup.bool()
                     .required()
                 })}
-                onSubmit={({ title, description, completion_date, status  }, { setSubmitting, resetForm }) => {
+                onSubmit={({ title, description, completion_date, status  }, { setSubmitting }) => {
                   completion_date = moment(completion_date).format();
                   Axios.post( config.API_URL + '/projects', { title, description, completion_date, status }, { headers: authHeader() })
                     .then(
                       res => {
-                        if (res.status === 200){
+                        if (res.status === 201){
                           history.go(0);
                         }
                       },
