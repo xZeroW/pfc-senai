@@ -10,10 +10,12 @@ import { CardProjeto } from 'components/Card';
 import Modal from 'components/Modal';
 
 import { Header } from './styles';
-import { Container, Row, Col12, Col8, Col4, Separator } from 'components/Grid/styles';
+import { Container, Row, Col12, Col8, Col4, Col, Separator, Col3 } from 'components/Grid/styles';
+import { BtnRoxo } from 'components/Button/styles';
 
 export default function Dashboard() {
 
+  const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -44,6 +46,7 @@ export default function Dashboard() {
       animate='in'
       variants={pageTransitions}
     >
+      { showModal && <Modal showModal={showModal} setShowModal={setShowModal} />}
       <Container>
         <Row>
           <Col12>
@@ -51,10 +54,11 @@ export default function Dashboard() {
           </Col12>
         </Row>
         <Row>
-          <Col8>
-            <MDBInput label="Material input" />
-          </Col8>
-          <Col4>novo projeto</Col4>
+          <Col4>
+            <MDBInput />
+          </Col4>
+          <Col4 />
+          <Col3><BtnRoxo onClick={() => setShowModal(!showModal)}>Novo projeto</BtnRoxo></Col3>
         </Row>
         <Separator />
         <Row>
