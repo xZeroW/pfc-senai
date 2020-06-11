@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { authHeader } from '_helpers/auth-header';
 import { config } from 'config';
 
-import { CardProjeto } from 'components/Card';
+import { CardTarefa } from 'components/Card';
 import Modal from 'components/Modal';
 
 import { Header } from './styles';
@@ -63,7 +63,7 @@ export default function Project(props) {
         <Separator />
         <Row>
           {data.map(({id, title, description}) =>
-            <CardProjeto key={id} id={id} title={title} description={description} />
+            <CardTarefa key={id} id={id} title={title} description={description} />
           )}
         </Row>
       </Container>
