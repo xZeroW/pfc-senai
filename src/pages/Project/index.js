@@ -62,8 +62,8 @@ export default function Project(props) {
         </Row>
         <Separator />
         <Row>
-          {data.map(({id, title, description}) =>
-            <CardTarefa key={id} id={id} title={title} description={description} />
+          {data.map(({id, status, title, description}) =>
+            <CardTarefa key={id} id={id} status={status} title={title} description={description} />
           )}
         </Row>
       </Container>
