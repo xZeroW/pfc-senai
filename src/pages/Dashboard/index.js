@@ -10,7 +10,7 @@ import { CardProjeto } from 'components/Card';
 import Modal from 'components/Modal';
 
 import { Header } from './styles';
-import { Container, Row, Col12, Col8, Col4, Col, Separator, Col3 } from 'components/Grid/styles';
+import { Container, Row, Col12, Col4, Separator, Col3 } from 'components/Grid/styles';
 import { BtnRoxo } from 'components/Button/styles';
 
 export default function Dashboard() {
@@ -46,7 +46,7 @@ export default function Dashboard() {
       animate='in'
       variants={pageTransitions}
     >
-      { showModal && <Modal showModal={showModal} setShowModal={setShowModal} />}
+      { showModal && <Modal tipo='projeto' showModal={showModal} setShowModal={setShowModal} />}
       <Container>
         <Row>
           <Col12>
@@ -63,7 +63,7 @@ export default function Dashboard() {
         <Separator />
         <Row>
           {data.map(({id, title, description}) =>
-            <CardProjeto key={id} title={title} description={description} />
+            <CardProjeto key={id} id={id} title={title} description={description} />
           )}
         </Row>
       </Container>

@@ -91,7 +91,7 @@ export default class Register extends React.Component {
                           Axios.post( config.API_URL + '/register', { first_name, last_name, email, password })
                             .then(
                               res => {
-                                if (res.status === 201){
+                                if (res.status === 200){
                                   setSubmitting(false);
                                   resetForm();
                                   setStatus('Conta criada! Agora você pode ');

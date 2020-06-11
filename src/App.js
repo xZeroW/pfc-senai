@@ -36,7 +36,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
-          <PrivateRoute path="/project/:id" component={Project} />
+          <PrivateRoute path="/tasks/:id" component={Project} />
           {/* <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route exact path="/builds" component={BuildList} />

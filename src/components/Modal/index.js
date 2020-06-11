@@ -14,13 +14,21 @@ import { config } from 'config';
 
 import { BtnRoxo } from 'components/Button/styles';
 
-export default function Modal({ showModal, setShowModal }) {
+export default function Modal({ projectId, tipo, showModal, setShowModal }) {
+
+  var endpoint;
+  if(tipo === 'projeto') {
+    endpoint = '/projects';
+  } else {
+    endpoint = `/tasks/${projectId}`;
+  }
+
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.div>
         <MDBContainer>
           <MDBModal isOpen={showModal} centered>
-            <MDBModalHeader>Novo projeto</MDBModalHeader>
+            <MDBModalHeader>{ tipo === 'projeto' ? 'Novo projeto' : 'Nova tarefa'}</MDBModalHeader>
             <MDBModalBody>
               <Formik
                 initialValues={{
@@ -32,23 +40,23 @@ export default function Modal({ showModal, setShowModal }) {
                 validationSchema={Yup.object().shape({
                   title: Yup.string()
                     .max(15, 'Limite de 15 caracteres atingido.')
-                    .matches(/^[A-Za-z0-9]+$/, 'Caracteres especiais não são permitidos.')
+                    .matches(/^[A-Za-z0-9 ]+$/, 'Caracteres especiais não são permitidos.')
                     .required('Título é requerido.'),
                   description: Yup.string()
                     .max(50, 'Limite de 20 caracteres atingido.')
-                    .matches(/^[A-Za-z0-9]+$/, 'Caracteres especiais não são permitidos.')
+                    .matches(/^[A-Za-z0-9 ]+$/, 'Caracteres especiais não são permitidos.')
                     .required('Descrição é requerido.'),
                   completion_date: Yup.date()
-                    .required(),
+                    .required('Data de entrega é requirido.'),
                   status: Yup.bool()
                     .required()
                 })}
                 onSubmit={({ title, description, completion_date, status  }, { setSubmitting }) => {
                   completion_date = moment(completion_date).format();
-                  Axios.post( config.API_URL + '/projects', { title, description, completion_date, status }, { headers: authHeader() })
+                  Axios.post( config.API_URL + endpoint, { title, description, completion_date, status }, { headers: authHeader() })
                     .then(
                       res => {
-                        if (res.status === 201){
+                        if (res.status === 200){
                           history.go(0);
                         }
                       },
@@ -72,7 +80,7 @@ export default function Modal({ showModal, setShowModal }) {
                       <ErrorMessage name="completion_date" component="div" className="invalid-feedback" />
                     </div>
                     <div className="form-group">
-                      <BtnRoxo type="submit" disabled={isSubmitting}>Cadastrar</BtnRoxo>
+                      <BtnRoxo type="submit" disabled={isSubmitting}>Criar</BtnRoxo>
                       {isSubmitting &&
                         <ReactLoading type='spin' color='#802DD0' height={24} width={24} />
                       }

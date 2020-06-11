@@ -7,7 +7,7 @@ import { BlackLink } from 'components/Link/styles';
 import { LogoLixeira} from 'components/Icons/styles';
 import { Card } from './styles';
 
-export function CardProjeto({title, description}) {
+export function CardProjeto({id, title, description}) {
   return(
     <MDBCol md="3">
       <Card className="mb-4" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }}>
@@ -27,7 +27,7 @@ export function CardProjeto({title, description}) {
             {description}
           </MDBCardText>
           <div className='black-text d-flex justify-content-end'>
-            <BlackLink to="#">
+            <BlackLink to={`/tasks/${id}`}>
                 Acessar
               <RiArrowRightSLine />
             </BlackLink>
@@ -39,6 +39,7 @@ export function CardProjeto({title, description}) {
 }
 
 CardProjeto.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired
 };
