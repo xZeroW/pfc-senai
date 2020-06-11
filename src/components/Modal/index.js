@@ -56,7 +56,7 @@ export default function Modal({ projectId, tipo, showModal, setShowModal }) {
                   Axios.post( config.API_URL + endpoint, { title, description, completion_date, status }, { headers: authHeader() })
                     .then(
                       res => {
-                        if (res.status === 200){
+                        if (res.status === 201){
                           history.go(0);
                         }
                       },
