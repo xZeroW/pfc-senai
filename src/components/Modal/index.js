@@ -43,7 +43,7 @@ export default function Modal({ projectId, tipo, showModal, setShowModal }) {
                     .matches(/^[A-Za-z0-9 ]+$/, 'Caracteres especiais não são permitidos.')
                     .required('Título é requerido.'),
                   description: Yup.string()
-                    .max(50, 'Limite de 20 caracteres atingido.')
+                    .max(50, 'Limite de 50 caracteres atingido.')
                     .matches(/^[A-Za-z0-9 ]+$/, 'Caracteres especiais não são permitidos.')
                     .required('Descrição é requerido.'),
                   completion_date: Yup.date()

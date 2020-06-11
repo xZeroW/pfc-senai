@@ -62,8 +62,8 @@ export default function Dashboard() {
         </Row>
         <Separator />
         <Row>
-          {data.map(({id, title, description}) =>
-            <CardProjeto key={id} id={id} title={title} description={description} />
+          {data.map(({id, status, title, description}) =>
+            <CardProjeto key={id} id={id} status={status} title={title} description={description} />
           )}
         </Row>
       </Container>

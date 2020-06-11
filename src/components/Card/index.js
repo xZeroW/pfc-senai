@@ -9,7 +9,7 @@ import { BlackLink } from 'components/Link/styles';
 import { LogoLixeira } from 'components/Icons/styles';
 import { Card } from './styles';
 
-export function CardProjeto({id, title, description}) {
+export function CardProjeto({id, status, title, description}) {
   return(
     <MDBCol md="3">
       <Card className="mb-4" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }}>
@@ -24,10 +24,15 @@ export function CardProjeto({id, title, description}) {
               </a>
             </MDBCol>
             <MDBCol size="1">
-              { }
-              <a href='#!'>
-                <BsCheckBox width='18' height='18' alt='complete' />
-              </a>
+              { status === 0 ? 
+                <a href='#!'>
+                  <BsApp width='18' height='18' alt='complete' />
+                </a>
+                :
+                <a href='#!'>
+                  <BsCheckBox width='18' height='18' alt='complete' />
+                </a>
+              }
             </MDBCol>
           </MDBRow>
           <hr />
@@ -48,6 +53,7 @@ export function CardProjeto({id, title, description}) {
 
 CardProjeto.propTypes = {
   id: PropTypes.number.isRequired,
+  status: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired
 };
