@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 
 export const DropDown = styled.div.attrs({
   className: 'dropdown'
@@ -14,7 +13,7 @@ export const DropDownButton = styled.button.attrs({
   }
 `;
 
-export const DropDownMenuItem = styled(motion.div).attrs({
+export const DropDownMenuItem = styled.div.attrs({
   className: 'dropdown-item'
 })`
   &&&:hover {

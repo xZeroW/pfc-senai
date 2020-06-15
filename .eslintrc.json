@@ -15,7 +15,7 @@
         "ecmaFeatures": {
             "jsx": true
         },
-        "ecmaVersion": 2015,
+        "ecmaVersion": 2018,
         "sourceType": "module"
     },
     "plugins": [
@@ -38,5 +38,10 @@
             "error",
             "always"
         ]
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     }
 }

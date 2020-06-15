@@ -4,8 +4,8 @@ import { Container } from './styles';
 
 export default function Board() {
   return (
-      <Container>
+    <Container>
         Board
-      </Container>
+    </Container>
   );
 }

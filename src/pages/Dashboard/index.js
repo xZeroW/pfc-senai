@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { MDBInput } from 'mdbreact';
-import { motion } from 'framer-motion';
 
 import { authHeader } from '_helpers/auth-header';
 import { config } from 'config';
@@ -12,6 +11,7 @@ import Modal from 'components/Modal';
 import { Header } from './styles';
 import { Container, Row, Col12, Col4, Separator, Col3 } from 'components/Grid/styles';
 import { BtnRoxo } from 'components/Button/styles';
+import Navbar from 'components/Navbar';
 
 export default function Dashboard() {
 
@@ -28,25 +28,10 @@ export default function Dashboard() {
       });
   }, []);
 
-  const pageTransitions = {
-    in: {
-      opacity: 1,
-      y: 0
-    },
-    out: {
-      opacity: 0,
-      y: '-100%'
-    }
-  };
-
   return (
-    <motion.div
-      initial='out'
-      exit='out'
-      animate='in'
-      variants={pageTransitions}
-    >
+    <>
       { showModal && <Modal tipo='projeto' showModal={showModal} setShowModal={setShowModal} />}
+      <Navbar />
       <Container>
         <Row>
           <Col12>
@@ -67,6 +52,6 @@ export default function Dashboard() {
           )}
         </Row>
       </Container>
-    </motion.div>
+    </>
   );
 }
