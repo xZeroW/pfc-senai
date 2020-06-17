@@ -118,7 +118,7 @@ export default class Register extends React.Component {
                             }
                           </div>
                           {status &&
-                            <div className={'alert alert-success'}>{status} <StyledLink to='/login'>Entrar</StyledLink></div>
+                            <div className={'alert alert-success'}>{status} <StyledLink to='/login'>Entrar!</StyledLink></div>
                           }
                         </Form>
                       )}

@@ -59,10 +59,12 @@ export default class Login extends React.Component {
                             .then(
                               () => {
                                 history.go(0);
-                              },
-                              error => {
+                              }
+                            )
+                            .catch(
+                              err => {
                                 setSubmitting(false);
-                                setStatus(error);
+                                setStatus('E-mail ou Senha inválido.');
                               }
                             );
                         }}>

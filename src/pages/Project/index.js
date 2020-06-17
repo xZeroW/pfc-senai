@@ -7,7 +7,7 @@ import { authHeader } from '_helpers/auth-header';
 import { config } from 'config';
 
 import { CardTarefa } from 'components/Card';
-import Modal from 'components/Modal';
+import { Modal } from 'components/Modal';
 
 import { Header } from './styles';
 import { Container, Row, Col12, Col4, Separator, Col3 } from 'components/Grid/styles';

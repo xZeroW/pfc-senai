@@ -6,7 +6,7 @@ import { authHeader } from '_helpers/auth-header';
 import { config } from 'config';
 
 import { CardProjeto } from 'components/Card';
-import Modal from 'components/Modal';
+import { Modal, ConfirmModal } from 'components/Modal';
 
 import { Header } from './styles';
 import { Container, Row, Col12, Col4, Separator, Col3 } from 'components/Grid/styles';
@@ -16,6 +16,7 @@ import Navbar from 'components/Navbar';
 export default function Dashboard() {
 
   const [showModal, setShowModal] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export default function Dashboard() {
   return (
     <>
       { showModal && <Modal tipo='projeto' showModal={showModal} setShowModal={setShowModal} />}
+      { showConfirmModal && <ConfirmModal tipo='projeto' showConfirmModal={showConfirmModal} setShowConfirmModal={setShowConfirmModal} />}
       <Navbar />
       <Container>
         <Row>
@@ -48,7 +50,13 @@ export default function Dashboard() {
         <Separator />
         <Row>
           {data.map(({id, status, title, description}) =>
-            <CardProjeto key={id} id={id} status={status} title={title} description={description} />
+            <CardProjeto 
+              key={id} 
+              id={id} 
+              status={status} 
+              title={title} 
+              description={description} 
+              setShowConfirmModal={setShowConfirmModal} />
           )}
         </Row>
       </Container>

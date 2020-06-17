@@ -33,9 +33,6 @@ export default function Navbar() {
               <NoBlueLink to="/dashboard">
                 <DropDownMenuItem>Meus projetos</DropDownMenuItem>
               </NoBlueLink>
-              <NoBlueLink to="#">
-                <DropDownMenuItem>Outro link</DropDownMenuItem>
-              </NoBlueLink>
               <DropdownDivider />
               <NoBlueLink to="#" onClick={logout}>
                 <DropDownMenuItem>Sair</DropDownMenuItem>

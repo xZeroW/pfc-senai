@@ -19,7 +19,7 @@ import { LogoLixeira } from 'components/Icons/styles';
 import { Card } from './styles';
 import { Link } from 'react-router-dom';
 
-export function CardProjeto({ id, status, title, description }) {
+export function CardProjeto({ id, status, title, description, setShowConfirmModal }) {
   return (
     <MDBCol md="3">
       <Card className="mb-4">
@@ -29,9 +29,15 @@ export function CardProjeto({ id, status, title, description }) {
               <MDBCardTitle>{title}</MDBCardTitle>
             </MDBCol>
             <MDBCol size="1">
-              <Link to="#!">
-                <LogoLixeira width="18" height="18" alt="lixeira" />
-              </Link>
+              <LogoLixeira 
+                title="Apagar?"
+                width="18"
+                height="18"
+                alt="lixeira"
+                onClick={
+                  () => setShowConfirmModal(true)
+                }
+              />
             </MDBCol>
             <MDBCol size="1">
               {status === 0 ? (
@@ -58,16 +64,15 @@ export function CardProjeto({ id, status, title, description }) {
                     style={{ color: '#802DD0' }}
                     width="18"
                     height="18"
-                    alt="complete"
+                    alt="completar"
                   />
                 </Link>
               ) : (
                 <BsCheckBox
-                  title="Apagar?"
                   style={{ color: '#802DD0' }}
                   width="18"
                   height="18"
-                  alt="complete"
+                  alt="completar"
                 />
               )}
             </MDBCol>
@@ -117,7 +122,7 @@ export function CardTarefa({ id, status, title, description }) {
                       { status: 1 },
                       { headers: authHeader() }
                     )
-                      .then((res) => {
+                      .then(res => {
                         if (res.status === 200) {
                           window.location.reload(true);
                         }
