@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-import propTypes from 'prop-types';
 import Axios from 'axios';
 import { MDBInput } from 'mdbreact';
 
@@ -49,14 +49,16 @@ export default function Project(props) {
         <Separator />
         <Row>
           {data.map(({id, status, title, description}) =>
-            <CardTarefa key={id} id={id} status={status} title={title} description={description} />
+            <CardTarefa 
+              key={id} 
+              id={id} 
+              status={status} 
+              title={title} 
+              description={description}
+            />
           )}
         </Row>
       </Container>
     </>
   );
 }
-
-Project.propTypes = {
-  match: propTypes.object
-};

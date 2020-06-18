@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { Switch, Route, useLocation  } from 'react-router-dom';
+import { Switch, Route  } from 'react-router-dom';
 
 import GlobalStyle from 'styles/global';
 import PrivateRoute from '_components/PrivateRoute';
@@ -22,22 +22,15 @@ import Project from 'pages/Project';
 
 function App() {
 
-  const location = useLocation();
-
   return (
     <>
       <GlobalStyle />
-        <Switch location={location} key={location.key}>
+        <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/tasks/:id" component={Project} />
-          {/* <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-          <Route exact path="/builds" component={BuildList} />
-          
-          <Route exact path="/builds/:buildId" component={BuildDetail} /> */}
         </Switch>
     </>
   );

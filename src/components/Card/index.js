@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
-import { RiArrowRightSLine } from 'react-icons/ri';
+import { BsCheckBox, BsApp, BsClockHistory } from 'react-icons/bs';
+import moment from 'moment';
+import localization from 'moment/locale/pt-br';
 import {
   MDBRow,
   MDBCol,
@@ -9,24 +11,41 @@ import {
   MDBCardText,
   MDBCardTitle,
 } from 'mdbreact';
-import { BsCheckBox, BsApp } from 'react-icons/bs';
+
 
 import { config } from 'config';
 import { authHeader } from '_helpers/auth-header';
+import { ConfirmModal } from 'components/Modal';
 
 import { BlackLink } from 'components/Link/styles';
 import { LogoLixeira } from 'components/Icons/styles';
 import { Card } from './styles';
 import { Link } from 'react-router-dom';
 
-export function CardProjeto({ id, status, title, description, setShowConfirmModal }) {
+export function CardProjeto({ id, status, title, description, completion_date }) {
+
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+
   return (
+    <>
+    { showConfirmModal && 
+      <ConfirmModal 
+        id={id} 
+        tipo='projeto' 
+        name={title} 
+        showConfirmModal={showConfirmModal} 
+        setShowConfirmModal={setShowConfirmModal} 
+      />}
     <MDBCol md="3">
       <Card className="mb-4">
         <MDBCardBody>
           <MDBRow>
             <MDBCol size="9">
-              <MDBCardTitle>{title}</MDBCardTitle>
+              <MDBCardTitle>
+                <BlackLink to={`/tasks/${id}`}>
+                  {title}
+                </BlackLink>
+              </MDBCardTitle>
             </MDBCol>
             <MDBCol size="1">
               <LogoLixeira 
@@ -79,15 +98,13 @@ export function CardProjeto({ id, status, title, description, setShowConfirmModa
           </MDBRow>
           <hr />
           <MDBCardText>{description}</MDBCardText>
-          <div className="black-text d-flex justify-content-end">
-            <BlackLink to={`/tasks/${id}`}>
-              Acessar
-              <RiArrowRightSLine />
-            </BlackLink>
+          <div title="Prazo de entrega">
+            <BsClockHistory /> {moment(completion_date).format('L')}
           </div>
         </MDBCardBody>
       </Card>
     </MDBCol>
+    </>
   );
 }
 
@@ -96,10 +113,23 @@ CardProjeto.propTypes = {
   status: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  completion_date: PropTypes.string.isRequired
 };
 
-export function CardTarefa({ id, status, title, description }) {
+export function CardTarefa({ id, status, title, description, completion_date }) {
+
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+
   return (
+    <>
+    { showConfirmModal && 
+      <ConfirmModal 
+        id={id} 
+        tipo='tarefa' 
+        name={title} 
+        showConfirmModal={showConfirmModal} 
+        setShowConfirmModal={setShowConfirmModal} 
+      />}
     <MDBCol md="3">
       <Card className="mb-4">
         <MDBCardBody>
@@ -108,9 +138,14 @@ export function CardTarefa({ id, status, title, description }) {
               <MDBCardTitle>{title}</MDBCardTitle>
             </MDBCol>
             <MDBCol size="1">
-              <Link to="#!">
-                <LogoLixeira width="18" height="18" alt="lixeira" />
-              </Link>
+              <LogoLixeira 
+                title="Apagar?"
+                width="18" 
+                height="18" 
+                alt="lixeira" 
+                onClick={
+                  () => setShowConfirmModal(true)
+                }/>
             </MDBCol>
             <MDBCol size="1">
               {status === 0 ? (
@@ -127,9 +162,9 @@ export function CardTarefa({ id, status, title, description }) {
                           window.location.reload(true);
                         }
                       })
-                      .catch
-                      //(err) => console.log(err)
-                      ()
+                      .catch(
+                        //(err) => console.log(err)
+                      )
                   }
                 >
                   <BsApp
@@ -153,15 +188,20 @@ export function CardTarefa({ id, status, title, description }) {
           </MDBRow>
           <hr />
           <MDBCardText>{description}</MDBCardText>
+          <div title="Prazo de entrega">
+            <BsClockHistory /> {moment(completion_date).locale('pt-BR', localization).format('LL')}
+          </div>
         </MDBCardBody>
       </Card>
     </MDBCol>
+    </>
   );
 }
 
 CardTarefa.propTypes = {
   id: PropTypes.number.isRequired,
-  status: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  status: PropTypes.number,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  completion_date: PropTypes.string
 };

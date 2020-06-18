@@ -6,7 +6,7 @@ import { authHeader } from '_helpers/auth-header';
 import { config } from 'config';
 
 import { CardProjeto } from 'components/Card';
-import { Modal, ConfirmModal } from 'components/Modal';
+import { Modal } from 'components/Modal';
 
 import { Header } from './styles';
 import { Container, Row, Col12, Col4, Separator, Col3 } from 'components/Grid/styles';
@@ -16,7 +16,6 @@ import Navbar from 'components/Navbar';
 export default function Dashboard() {
 
   const [showModal, setShowModal] = useState(false);
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -24,15 +23,14 @@ export default function Dashboard() {
       .then((res) => {
         setData(data.concat(res.data));
       })
-      .catch(function () {
+      .catch(
         // handle error
-      });
+      );
   }, []);
 
   return (
     <>
       { showModal && <Modal tipo='projeto' showModal={showModal} setShowModal={setShowModal} />}
-      { showConfirmModal && <ConfirmModal tipo='projeto' showConfirmModal={showConfirmModal} setShowConfirmModal={setShowConfirmModal} />}
       <Navbar />
       <Container>
         <Row>
@@ -45,18 +43,19 @@ export default function Dashboard() {
             <MDBInput />
           </Col4>
           <Col4 />
-          <Col3><BtnRoxo onClick={() => setShowModal(!showModal)}>Novo projeto</BtnRoxo></Col3>
+          <Col3><BtnRoxo onClick={() => setShowModal(true)}>Novo projeto</BtnRoxo></Col3>
         </Row>
         <Separator />
         <Row>
-          {data.map(({id, status, title, description}) =>
+          {data.map(({id, status, title, description, completion_date}) =>
             <CardProjeto 
               key={id} 
               id={id} 
               status={status} 
               title={title} 
-              description={description} 
-              setShowConfirmModal={setShowConfirmModal} />
+              description={description}
+              completion_date={completion_date}
+            />
           )}
         </Row>
       </Container>

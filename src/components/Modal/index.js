@@ -78,7 +78,7 @@ export function Modal({ projectId, tipo, showModal, setShowModal }) {
               <div className="form-group">
                 <BtnRoxo type="submit" disabled={isSubmitting}>Criar</BtnRoxo>
                 {isSubmitting &&
-                        <ReactLoading type='spin' color='#802DD0' height={24} width={24} />
+                  <ReactLoading type='spin' color='#802DD0' height={24} width={24} />
                 }
               </div>
             </Form>
@@ -92,7 +92,7 @@ export function Modal({ projectId, tipo, showModal, setShowModal }) {
   );
 }
 
-export function ConfirmModal({ id, tipo, showConfirmModal, setShowConfirmModal }) {
+export function ConfirmModal({ id, name, tipo, showConfirmModal, setShowConfirmModal }) {
 
   var endpoint;
   if(tipo === 'projeto') {
@@ -103,7 +103,7 @@ export function ConfirmModal({ id, tipo, showConfirmModal, setShowConfirmModal }
 
   return (
     <MDBModal isOpen={showConfirmModal} centered>
-      <MDBModalHeader>{ tipo === 'projeto' ? 'Apagar projeto?' : 'Apagar tarefa?'}</MDBModalHeader>
+      <MDBModalHeader>{`Apagar "${name}"?`}</MDBModalHeader>
       <MDBModalBody>
         <p>Você tem certeza disso?</p>
       </MDBModalBody>
@@ -119,11 +119,13 @@ export function ConfirmModal({ id, tipo, showConfirmModal, setShowConfirmModal }
                   }
                 }
               )
-              .catch(err => console.log(err))
+              .catch(
+                //err => console.log(err)
+              )
           }>Apagar</MDBBtn>
         <MDBBtn 
           color="secondary" 
-          onClick={() => setShowConfirmModal(!showConfirmModal)}>Cancelar</MDBBtn>
+          onClick={() => setShowConfirmModal(false)}>Cancelar</MDBBtn>
       </MDBModalFooter>
     </MDBModal>
   );
