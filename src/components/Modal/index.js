@@ -91,13 +91,13 @@ export function Modal({ projectId, tipo, showModal, setShowModal }) {
   );
 }
 
-export function ConfirmModal({ id, name, tipo, showConfirmModal, setShowConfirmModal }) {
+export function ConfirmModal({ id, name, tipo, showConfirmModal, setShowConfirmModal, projectId }) {
 
   var endpoint;
   if(tipo === 'projeto') {
     endpoint = `/projects/${id}`;
   } else {
-    endpoint = `/tasks/${id}`;
+    endpoint = `/tasks/${id}/${projectId}`;
   }
 
   return (

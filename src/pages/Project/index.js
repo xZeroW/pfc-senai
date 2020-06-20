@@ -48,13 +48,14 @@ export default function Project(props) {
         </Row>
         <Separator />
         <Row>
-          {data.map(({id, status, title, description}) =>
+          {data.map(({id, status, title, description, project_id}) =>
             <CardTarefa 
               key={id} 
               id={id} 
               status={status} 
               title={title} 
               description={description}
+              projectId={project_id}
             />
           )}
         </Row>

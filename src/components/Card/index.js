@@ -120,7 +120,7 @@ CardProjeto.propTypes = {
   completion_date: PropTypes.string.isRequired
 };
 
-export function CardTarefa({ id, status, title, description, completion_date }) {
+export function CardTarefa({ id, status, title, description, completion_date, projectId }) {
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -132,6 +132,7 @@ export function CardTarefa({ id, status, title, description, completion_date }) 
         id={id} 
         tipo='tarefa' 
         name={title} 
+        projectId={projectId}
         showConfirmModal={showConfirmModal} 
         setShowConfirmModal={setShowConfirmModal} 
       />}
@@ -211,5 +212,6 @@ CardTarefa.propTypes = {
   status: PropTypes.number,
   title: PropTypes.string,
   description: PropTypes.string,
-  completion_date: PropTypes.string
+  completion_date: PropTypes.string,
+  projectId: PropTypes.number
 };
