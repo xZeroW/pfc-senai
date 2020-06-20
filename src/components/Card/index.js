@@ -15,7 +15,7 @@ import {
 
 import { config } from 'config';
 import { authHeader } from '_helpers/auth-header';
-import { ConfirmModal } from 'components/Modal';
+import { ConfirmModal, ErrorModal } from 'components/Modal';
 
 import { BlackLink } from 'components/Link/styles';
 import { LogoLixeira } from 'components/Icons/styles';
@@ -25,9 +25,15 @@ import { Link } from 'react-router-dom';
 export function CardProjeto({ id, status, title, description, completion_date }) {
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
 
   return (
     <>
+    { showErrorModal && 
+        <ErrorModal 
+          showErrorModal={showErrorModal}
+        />
+    }
     { showConfirmModal && 
       <ConfirmModal 
         id={id} 
@@ -73,9 +79,7 @@ export function CardProjeto({ id, status, title, description, completion_date })
                           window.location.reload(true);
                         }
                       })
-                      .catch
-                      //(err) => console.log(err)
-                      ()
+                      .catch(setShowErrorModal(true))
                   }
                 >
                   <BsApp
@@ -119,6 +123,7 @@ CardProjeto.propTypes = {
 export function CardTarefa({ id, status, title, description, completion_date }) {
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
 
   return (
     <>
@@ -130,6 +135,11 @@ export function CardTarefa({ id, status, title, description, completion_date }) 
         showConfirmModal={showConfirmModal} 
         setShowConfirmModal={setShowConfirmModal} 
       />}
+      { showErrorModal && 
+        <ErrorModal 
+          showErrorModal={showErrorModal}
+        />
+      }
     <MDBCol md="3">
       <Card className="mb-4">
         <MDBCardBody>
@@ -162,9 +172,7 @@ export function CardTarefa({ id, status, title, description, completion_date }) 
                           window.location.reload(true);
                         }
                       })
-                      .catch(
-                        //(err) => console.log(err)
-                      )
+                      .catch(setShowErrorModal(true))
                   }
                 >
                   <BsApp

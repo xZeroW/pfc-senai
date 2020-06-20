@@ -7,7 +7,6 @@ import Axios from 'axios';
 import ReactLoading from 'react-loading';
 import moment from 'moment';
 
-import { history } from '_helpers/history';
 import { authHeader } from '_helpers/auth-header';
 import { config } from 'config';
 
@@ -53,7 +52,7 @@ export function Modal({ projectId, tipo, showModal, setShowModal }) {
               .then(
                 res => {
                   if (res.status === 200 || res.status === 201){
-                    history.go(0);
+                    window.location.reload(true);
                   }
                 },
                 () => {
@@ -115,7 +114,7 @@ export function ConfirmModal({ id, name, tipo, showConfirmModal, setShowConfirmM
               .then(
                 res => {
                   if (res.status === 200){
-                    history.go(0);
+                    window.location.reload(true);
                   }
                 }
               )
@@ -126,6 +125,22 @@ export function ConfirmModal({ id, name, tipo, showConfirmModal, setShowConfirmM
         <MDBBtn 
           color="secondary" 
           onClick={() => setShowConfirmModal(false)}>Cancelar</MDBBtn>
+      </MDBModalFooter>
+    </MDBModal>
+  );
+}
+
+export function ErrorModal({ showErrorModal }) {
+  return (
+    <MDBModal isOpen={showErrorModal} centered>
+      <MDBModalHeader>Algum erro aconteceu :/</MDBModalHeader>
+      <MDBModalBody>
+        <p>Se o problema persistir, por favor entre em contato com o adiministrador em: EmailDoCoitado@gmail.com</p>
+      </MDBModalBody>
+      <MDBModalFooter>
+        <MDBBtn 
+          color="secondary" 
+          onClick={() => window.location.reload(true)}>Recarregar</MDBBtn>
       </MDBModalFooter>
     </MDBModal>
   );
