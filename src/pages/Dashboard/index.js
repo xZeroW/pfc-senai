@@ -15,6 +15,7 @@ import { MaterialInputContainer } from 'components/Input/styles';
 
 export default function Dashboard() {
 
+  const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState([]);
   const [filterInput, setFilterInput] = useState('');
@@ -23,6 +24,7 @@ export default function Dashboard() {
     const fetchData = () => 
       Axios.get(`${config.API_URL}/projects`, { headers: authHeader() })
         .then((res) => {
+          setIsLoading(false);
           setData(res.data);
         })
         .catch(
@@ -53,16 +55,23 @@ export default function Dashboard() {
         </Row>
         <Separator />
         <Row>
-          {data.map(({id, status, title, description, completion_date}) =>
-            <CardProjeto 
-              key={id} 
-              id={id} 
-              status={status} 
-              title={title} 
-              description={description}
-              completion_date={completion_date}
-            />
-          )}
+          { isLoading ? 
+            <p>Carregando...</p>
+            :
+            <>
+            {data.map(({id, status, title, description, completion_date}) =>
+              <CardProjeto 
+                key={id} 
+                id={id} 
+                status={status} 
+                title={title} 
+                description={description}
+                completion_date={completion_date}
+              />
+            )}
+            </>
+          }
+          
         </Row>
       </Container>
     </>

@@ -16,6 +16,7 @@ import { MaterialInputContainer } from 'components/Input/styles';
 
 export default function Project(props) {
 
+  const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState([]);
   const [filterInput, setFilterInput] = useState('');
@@ -24,6 +25,7 @@ export default function Project(props) {
     const fetchData = () => 
       Axios.get(`${config.API_URL}/tasks/${props.match.params.id}`, { headers: authHeader() })
         .then((res) => {
+          setIsLoading(false);
           setData(data.concat(res.data));
         })
         .catch(function () {
@@ -54,6 +56,10 @@ export default function Project(props) {
         </Row>
         <Separator />
         <Row>
+          { isLoading ?
+            <p>Carregando...</p>  
+            :
+          <>
           {data.map(({id, status, title, description, project_id}) =>
             <CardTarefa 
               key={id} 
@@ -64,6 +70,9 @@ export default function Project(props) {
               projectId={project_id}
             />
           )}
+          </>
+          }
+          
         </Row>
       </Container>
     </>
