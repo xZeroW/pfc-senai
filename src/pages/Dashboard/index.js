@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import { MDBInput } from 'mdbreact';
 
 import { authHeader } from '_helpers/auth-header';
 import { config } from 'config';
@@ -12,20 +11,24 @@ import { Header } from './styles';
 import { Container, Row, Col12, Col4, Separator, Col3 } from 'components/Grid/styles';
 import { BtnRoxo } from 'components/Button/styles';
 import Navbar from 'components/Navbar';
+import { MaterialInputContainer } from 'components/Input/styles';
 
 export default function Dashboard() {
 
   const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState([]);
+  const [filterInput, setFilterInput] = useState('');
 
   useEffect(() => {
-    Axios.get(`${config.API_URL}/projects`, { headers: authHeader() })
-      .then((res) => {
-        setData(data.concat(res.data));
-      })
-      .catch(
-        // handle error
-      );
+    const fetchData = () => 
+      Axios.get(`${config.API_URL}/projects`, { headers: authHeader() })
+        .then((res) => {
+          setData(res.data);
+        })
+        .catch(
+          // handle error
+        );
+    fetchData();
   }, []);
 
   return (
@@ -40,7 +43,10 @@ export default function Dashboard() {
         </Row>
         <Row>
           <Col4>
-            <MDBInput />
+            <MaterialInputContainer>
+              <input value={filterInput} onChange={(e) => setFilterInput(e.target.value)} id="filter" type="text" pattern=".+" required />
+              <label htmlFor="filter">Filtrar</label>
+            </MaterialInputContainer>
           </Col4>
           <Col4 />
           <Col3><BtnRoxo onClick={() => setShowModal(true)}>Novo projeto</BtnRoxo></Col3>
