@@ -30,7 +30,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
-          <PrivateRoute path="/tasks/:id" component={Project} />
+          <PrivateRoute path="/project/:id" component={Project} />
         </Switch>
     </>
   );

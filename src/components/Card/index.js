@@ -48,7 +48,7 @@ export function CardProjeto({ id, status, title, description, completion_date })
           <MDBRow>
             <MDBCol size="9">
               <MDBCardTitle>
-                <BlackLink to={`/tasks/${id}`}>
+                <BlackLink to={`/project/${id}`}>
                   {title}
                 </BlackLink>
               </MDBCardTitle>

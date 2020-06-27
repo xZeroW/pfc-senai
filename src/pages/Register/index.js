@@ -70,6 +70,7 @@ export default class Register extends React.Component {
                       })}
                       onSubmit={({ first_name, last_name, email, password }, { setStatus, setSubmitting, resetForm, setFieldError }) => {
                         setStatus();
+                        console.log(config);
                         Axios.post( config.API_URL + '/register', { first_name, last_name, email, password })
                           .then(
                             res => {

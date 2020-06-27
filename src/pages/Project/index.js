@@ -18,21 +18,35 @@ export default function Project(props) {
 
   const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
+  const [tasks, setTasks] = useState();
   const [filterInput, setFilterInput] = useState('');
 
+  // fetch project data
   useEffect(() => {
     const fetchData = () => 
-      Axios.get(`${config.API_URL}/tasks/${props.match.params.id}`, { headers: authHeader() })
-        .then((res) => {
+      Axios.get(`${config.API_URL}/projects/${props.match.params.id}`, { headers: authHeader() })
+        .then(res => {
+          setData(res.data);
+          setTasks(res.data.tasks);
           setIsLoading(false);
-          setData(data.concat(res.data));
         })
         .catch(function () {
         // handle error
         });
     fetchData();
   }, []);
+
+  // live search
+  useEffect(() => {
+    if(isLoading){
+      return;
+    } else {
+      setTasks(data.tasks.filter(item => {
+        return item.title.toLowerCase().indexOf(filterInput.toLowerCase()) !== -1;
+      }));
+    }
+  }, [filterInput]);
 
   return (
     <>
@@ -41,7 +55,7 @@ export default function Project(props) {
       <Container>
         <Row>
           <Col12>
-            <Header>Nome do projeto</Header>
+            <Header>{ isLoading ? 'Carregando...' : data['title']}</Header>
           </Col12>
         </Row>
         <Row>
@@ -60,7 +74,7 @@ export default function Project(props) {
             <p>Carregando...</p>  
             :
           <>
-          {data.map(({id, status, title, description, project_id}) =>
+          {tasks.map(({id, status, title, description, project_id}) =>
             <CardTarefa 
               key={id} 
               id={id} 

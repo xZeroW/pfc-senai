@@ -17,21 +17,35 @@ export default function Dashboard() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
+  const [projects, setProjects] = useState();
   const [filterInput, setFilterInput] = useState('');
 
+  // fetch projects list
   useEffect(() => {
     const fetchData = () => 
       Axios.get(`${config.API_URL}/projects`, { headers: authHeader() })
-        .then((res) => {
-          setIsLoading(false);
+        .then(res => {
           setData(res.data);
+          setProjects(res.data);
+          setIsLoading(false);
         })
         .catch(
           // handle error
         );
     fetchData();
   }, []);
+
+  // live search
+  useEffect(() => {
+    if(isLoading){
+      return;
+    } else {
+      setProjects(data.filter(item => {
+        return item.title.toLowerCase().indexOf(filterInput.toLowerCase()) !== -1;
+      }));
+    }
+  }, [filterInput]);
 
   return (
     <>
@@ -59,7 +73,7 @@ export default function Dashboard() {
             <p>Carregando...</p>
             :
             <>
-            {data.map(({id, status, title, description, completion_date}) =>
+            {projects.map(({id, status, title, description, completion_date}) =>
               <CardProjeto 
                 key={id} 
                 id={id} 
