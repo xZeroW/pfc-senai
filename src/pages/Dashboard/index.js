@@ -6,6 +6,7 @@ import { config } from 'config';
 
 import { CardProjeto } from 'components/Card';
 import { Modal } from 'components/Modal';
+import Loading from 'components/Loading';
 
 import { Header } from './styles';
 import { Container, Row, Col12, Col4, Separator, Col3 } from 'components/Grid/styles';
@@ -46,6 +47,10 @@ export default function Dashboard() {
       }));
     }
   }, [filterInput]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>

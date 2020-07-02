@@ -7,6 +7,7 @@ import { config } from 'config';
 
 import { CardTarefa } from 'components/Card';
 import { Modal } from 'components/Modal';
+import Loading from 'components/Loading';
 
 import { Header } from './styles';
 import { Container, Row, Col12, Col4, Separator, Col3 } from 'components/Grid/styles';
@@ -48,6 +49,10 @@ export default function Project(props) {
     }
   }, [filterInput]);
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <>
       { showModal && <Modal projectId={props.match.params.id} showModal={showModal} setShowModal={setShowModal} />}
@@ -55,7 +60,7 @@ export default function Project(props) {
       <Container>
         <Row>
           <Col12>
-            <Header>{ isLoading ? 'Carregando...' : data['title']}</Header>
+            <Header>{data['title']}</Header>
           </Col12>
         </Row>
         <Row>
@@ -70,10 +75,6 @@ export default function Project(props) {
         </Row>
         <Separator />
         <Row>
-          { isLoading ?
-            <p>Carregando...</p>  
-            :
-          <>
           {tasks.map(({id, status, title, description, project_id}) =>
             <CardTarefa 
               key={id} 
@@ -84,9 +85,6 @@ export default function Project(props) {
               projectId={project_id}
             />
           )}
-          </>
-          }
-          
         </Row>
       </Container>
     </>
