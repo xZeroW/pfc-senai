@@ -6,13 +6,16 @@ import * as Yup from 'yup';
 import Axios from 'axios';
 import ReactLoading from 'react-loading';
 import moment from 'moment';
+import { useAuth0 } from '@auth0/auth0-react';
 
-import { authHeader } from '_helpers/auth-header';
+
 import { config } from 'config';
 
 import { BtnRoxo } from 'components/Button/styles';
 
 export function Modal({ projectId, tipo, showModal, setShowModal }) {
+
+  const { getAccessTokenSilently } = useAuth0();
 
   var endpoint;
   if(tipo === 'projeto') {
@@ -46,9 +49,10 @@ export function Modal({ projectId, tipo, showModal, setShowModal }) {
             status: Yup.bool()
               .required()
           })}
-          onSubmit={({ title, description, completion_date, status  }, { setSubmitting }) => {
+          onSubmit={async ({ title, description, completion_date, status  }, { setSubmitting }) => {
+            const token = await getAccessTokenSilently();
             completion_date = moment(completion_date).format();
-            Axios.post( config.API_URL + endpoint, { title, description, completion_date, status }, { headers: authHeader() })
+            Axios.post( config.API_URL + endpoint, { title, description, completion_date, status }, { headers: { Authorization: `Bearer ${token}` } })
               .then(
                 res => {
                   if (res.status === 200 || res.status === 201){
@@ -93,6 +97,8 @@ export function Modal({ projectId, tipo, showModal, setShowModal }) {
 
 export function ConfirmModal({ id, name, tipo, showConfirmModal, setShowConfirmModal, projectId }) {
 
+  const { getAccessTokenSilently } = useAuth0();
+
   var endpoint;
   if(tipo === 'projeto') {
     endpoint = `/projects/${id}`;
@@ -110,17 +116,20 @@ export function ConfirmModal({ id, name, tipo, showConfirmModal, setShowConfirmM
         <MDBBtn 
           color="danger" 
           onClick={
-            () => Axios.delete( config.API_URL + endpoint, { headers: authHeader() })
-              .then(
-                res => {
-                  if (res.status === 200){
-                    window.location.reload(true);
+            async () => {
+              const token = await getAccessTokenSilently();
+              Axios.delete( config.API_URL + endpoint, { headers: { Authorization: `Bearer ${token}` } })
+                .then(
+                  res => {
+                    if (res.status === 200){
+                      window.location.reload(true);
+                    }
                   }
-                }
-              )
-              .catch(
+                )
+                .catch(
                 //err => console.log(err)
-              )
+                );
+            } 
           }>Apagar</MDBBtn>
         <MDBBtn 
           color="secondary" 

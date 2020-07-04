@@ -1,8 +1,6 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import { DropdownMenu, DropdownDivider } from 'styled-dropdown-component';
-
-import { authenticationService } from '_services/auth.service';
-import { history } from '_helpers/history';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import { DropDown, DropDownButton, DropDownMenuItem } from 'components/DropDownMenu/styles';
 import { Container, Logo, RightMenu, Ul, Li, A } from './styles';
@@ -11,30 +9,36 @@ import { NoBlueLink } from 'components/Link/styles';
 
 export default function Navbar() {
 
-  const [currentUser] = useState(authenticationService.currentUserValue);
   const [hidden, setHidden] = useState(true);
 
-  function logout() {
-    authenticationService.logout();
-    history.go(0);
-  }
+  const {
+    user,
+    isAuthenticated,
+    loginWithRedirect,
+    logout,
+  } = useAuth0();
+
+  const logoutWithRedirect = () =>
+    logout({
+      returnTo: window.location.origin,
+    });
 
   return (
     <Container>
       <LogoWhite width="64px" height="64px" alt="MyProjectIcon" />
       <Logo to="/">MyProject</Logo>
       <RightMenu>
-        { currentUser ?
+        { isAuthenticated ?
           <DropDown>
             <DropDownButton bgColor='#802DD0' onClick={() => setHidden(!hidden)}>
-              {currentUser.user.first_name} {currentUser.user.last_name}
+              {user.name}
             </DropDownButton>
             <DropdownMenu right hidden={hidden} toggle={() => setHidden(!hidden)}>
               <NoBlueLink to="/dashboard">
                 <DropDownMenuItem>Meus projetos</DropDownMenuItem>
               </NoBlueLink>
               <DropdownDivider />
-              <NoBlueLink to="#" onClick={logout}>
+              <NoBlueLink to="#" onClick={() => logoutWithRedirect()}>
                 <DropDownMenuItem>Sair</DropDownMenuItem>
               </NoBlueLink>
             </DropdownMenu>
@@ -42,10 +46,10 @@ export default function Navbar() {
           :
           <Ul>  
             <Li as="li">
-              <A to="/login">Entrar</A>
+              <A to="#" onClick={() => loginWithRedirect()}>Entrar</A>
             </Li>
             <Li as="li">
-              <A to="/register">Cadastrar</A>
+              <A to="#" onClick={() => loginWithRedirect()}>Cadastrar</A>
             </Li>
           </Ul>
         }

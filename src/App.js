@@ -1,38 +1,37 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { Switch, Route  } from 'react-router-dom';
+import { Router, Switch, Route  } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import GlobalStyle from 'styles/global';
-import PrivateRoute from '_components/PrivateRoute';
+import history from '_helpers/history';
+import Loading from 'components/Loading';
 
 import Home from 'pages/Home';
-import Login from 'pages/Login';
-import Register from 'pages/Register';
 import Dashboard from 'pages/Dashboard';
 import Project from 'pages/Project';
 
-// const NavRoute = ({exact, path, component: Component}) => (
-//   <Route exact={exact} path={path} render={(props) => (
-//     <div>
-//       <Navbar/>
-//       <Component {...props}/>
-//     </div>
-//   )}/>
-// );
-
 function App() {
 
+  const { isLoading, error } = useAuth0();
+
+  if (error) {
+    return <div>Oops... {error.message}</div>;
+  }
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
-    <>
+    <Router history={history}>
       <GlobalStyle />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <PrivateRoute path="/dashboard" component={Dashboard} />
-          <PrivateRoute path="/project/:id" component={Project} />
-        </Switch>
-    </>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/project/:id" component={Project} />
+      </Switch>
+    </Router>
   );
 }
 

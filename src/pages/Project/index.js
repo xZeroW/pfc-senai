@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
-import { authHeader } from '_helpers/auth-header';
 import { config } from 'config';
 
 import { CardTarefa } from 'components/Card';
@@ -15,32 +15,34 @@ import { BtnRoxo } from 'components/Button/styles';
 import Navbar from 'components/Navbar';
 import { MaterialInputContainer } from 'components/Input/styles';
 
-export default function Project(props) {
+export function Project(props) {
 
-  const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState();
   const [tasks, setTasks] = useState();
   const [filterInput, setFilterInput] = useState('');
 
+  const { getAccessTokenSilently } = useAuth0();
+
   // fetch project data
   useEffect(() => {
-    const fetchData = () => 
-      Axios.get(`${config.API_URL}/projects/${props.match.params.id}`, { headers: authHeader() })
+    const fetchData = async () => {
+      const token = await getAccessTokenSilently();
+      Axios.get(`${config.API_URL}/projects/${props.match.params.id}`, { headers: { Authorization: `Bearer ${token}` } })
         .then(res => {
           setData(res.data);
           setTasks(res.data.tasks);
-          setIsLoading(false);
         })
         .catch(function () {
         // handle error
         });
+    };
     fetchData();
   }, []);
 
   // live search
   useEffect(() => {
-    if(isLoading){
+    if(tasks  === undefined){
       return;
     } else {
       setTasks(data.tasks.filter(item => {
@@ -48,10 +50,6 @@ export default function Project(props) {
       }));
     }
   }, [filterInput]);
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   return (
     <>
@@ -90,3 +88,7 @@ export default function Project(props) {
     </>
   );
 }
+
+export default withAuthenticationRequired(Project, {
+  onRedirecting: () => <Loading />,
+});

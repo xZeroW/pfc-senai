@@ -1,45 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
-import { authHeader } from '_helpers/auth-header';
 import { config } from 'config';
 
 import { CardProjeto } from 'components/Card';
 import { Modal } from 'components/Modal';
-import Loading from 'components/Loading';
 
 import { Header } from './styles';
 import { Container, Row, Col12, Col4, Separator, Col3 } from 'components/Grid/styles';
 import { BtnRoxo } from 'components/Button/styles';
 import Navbar from 'components/Navbar';
 import { MaterialInputContainer } from 'components/Input/styles';
+import Loading from 'components/Loading';
 
-export default function Dashboard() {
+export function Dashboard() {
 
-  const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState();
   const [projects, setProjects] = useState();
   const [filterInput, setFilterInput] = useState('');
 
+  const { getAccessTokenSilently } = useAuth0();
+
   // fetch projects list
   useEffect(() => {
-    const fetchData = () => 
-      Axios.get(`${config.API_URL}/projects`, { headers: authHeader() })
+    const fetchData = async () => {
+      const token = await getAccessTokenSilently();
+      Axios.get(`${config.API_URL}/projects`, { headers: { Authorization: `Bearer ${token}` } })
         .then(res => {
           setData(res.data);
           setProjects(res.data);
-          setIsLoading(false);
         })
         .catch(
           // handle error
-        );
+        )};
     fetchData();
   }, []);
 
   // live search
   useEffect(() => {
-    if(isLoading){
+    if(projects === undefined){
       return;
     } else {
       setProjects(data.filter(item => {
@@ -47,10 +48,6 @@ export default function Dashboard() {
       }));
     }
   }, [filterInput]);
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   return (
     <>
@@ -74,9 +71,7 @@ export default function Dashboard() {
         </Row>
         <Separator />
         <Row>
-          { isLoading ? 
-            <p>Carregando...</p>
-            :
+          { projects !== undefined ?
             <>
             {projects.map(({id, status, title, description, completion_date}) =>
               <CardProjeto 
@@ -87,12 +82,13 @@ export default function Dashboard() {
                 description={description}
                 completion_date={completion_date}
               />
-            )}
-            </>
-          }
-          
+            )}</> : <></>}
         </Row>
       </Container>
     </>
   );
 }
+
+export default withAuthenticationRequired(Dashboard, {
+  onRedirecting: () => <Loading />,
+});

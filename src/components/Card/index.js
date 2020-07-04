@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { BsCheckBox, BsApp, BsClockHistory } from 'react-icons/bs';
 import moment from 'moment';
 import localization from 'moment/locale/pt-br';
+import { useAuth0 } from '@auth0/auth0-react';
 import {
   MDBRow,
   MDBCol,
@@ -14,7 +15,6 @@ import {
 
 
 import { config } from 'config';
-import { authHeader } from '_helpers/auth-header';
 import { ConfirmModal, ErrorModal } from 'components/Modal';
 
 import { BlackLink } from 'components/Link/styles';
@@ -24,6 +24,7 @@ import { Link } from 'react-router-dom';
 
 export function CardProjeto({ id, status, title, description, completion_date }) {
 
+  const { getAccessTokenSilently } = useAuth0();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
 
@@ -68,19 +69,20 @@ export function CardProjeto({ id, status, title, description, completion_date })
               {status === 0 ? (
                 <Link
                   to="#"
-                  onClick={() =>
+                  onClick={async () => {
+                    const token = await getAccessTokenSilently();
                     Axios.patch(
                       config.API_URL + `/projects/${id}`,
                       { status: 1 },
-                      { headers: authHeader() }
+                      { headers: { Authorization: `Bearer ${token}` } }
                     )
                       .then((res) => {
                         if (res.status === 200) {
                           window.location.reload(true);
                         }
                       })
-                      .catch(setShowErrorModal(true))
-                  }
+                      .catch(setShowErrorModal(true));
+                  }}
                 >
                   <BsApp
                     title="Completar?"
@@ -122,6 +124,7 @@ CardProjeto.propTypes = {
 
 export function CardTarefa({ id, status, title, description, completion_date, projectId }) {
 
+  const { getAccessTokenSilently } = useAuth0();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
 
@@ -162,19 +165,20 @@ export function CardTarefa({ id, status, title, description, completion_date, pr
               {status === 0 ? (
                 <Link
                   to="#"
-                  onClick={() =>
+                  onClick={async () => {
+                    const token = await getAccessTokenSilently();
                     Axios.patch(
                       config.API_URL + `/tasks/${id}`,
                       { status: 1 },
-                      { headers: authHeader() }
+                      { headers: { Authorization: `Bearer ${token}` } }
                     )
                       .then(res => {
                         if (res.status === 200) {
                           window.location.reload(true);
                         }
                       })
-                      .catch(setShowErrorModal(true))
-                  }
+                      .catch(setShowErrorModal(true));
+                  }}
                 >
                   <BsApp
                     title="Completar?"
