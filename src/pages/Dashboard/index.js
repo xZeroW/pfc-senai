@@ -70,7 +70,7 @@ export default function Dashboard() {
         </Row>
         <Separator />
         <Row>
-          {/* { projects !== undefined ?
+          { projects !== undefined ?
             <>
             {projects.map(({id, status, title, description, completion_date}) =>
               <CardProjeto 
@@ -81,7 +81,7 @@ export default function Dashboard() {
                 description={description}
                 completion_date={completion_date}
               />
-            )}</> : <></>} */}
+            )}</> : <></>}
         </Row>
       </Container>
     </>
