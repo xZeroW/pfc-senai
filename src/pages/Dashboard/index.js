@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import { config } from 'config';
 
@@ -12,9 +12,8 @@ import { Container, Row, Col12, Col4, Separator, Col3 } from 'components/Grid/st
 import { BtnRoxo } from 'components/Button/styles';
 import Navbar from 'components/Navbar';
 import { MaterialInputContainer } from 'components/Input/styles';
-import Loading from 'components/Loading';
 
-export function Dashboard() {
+export default function Dashboard() {
 
   const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState();
@@ -34,7 +33,7 @@ export function Dashboard() {
         })
         .catch(
           // handle error
-        )};
+        );};
     fetchData();
   }, []);
 
@@ -88,7 +87,3 @@ export function Dashboard() {
     </>
   );
 }
-
-export default withAuthenticationRequired(Dashboard, {
-  onRedirecting: () => <Loading />,
-});

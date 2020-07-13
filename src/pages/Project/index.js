@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import { config } from 'config';
 
 import { CardTarefa } from 'components/Card';
 import { Modal } from 'components/Modal';
-import Loading from 'components/Loading';
 
 import { Header } from './styles';
 import { Container, Row, Col12, Col4, Separator, Col3 } from 'components/Grid/styles';
@@ -15,7 +14,7 @@ import { BtnRoxo } from 'components/Button/styles';
 import Navbar from 'components/Navbar';
 import { MaterialInputContainer } from 'components/Input/styles';
 
-export function Project(props) {
+export default function Project(props) {
 
   const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState();
@@ -38,7 +37,7 @@ export function Project(props) {
         });
     };
     fetchData();
-  }, []);
+  }, [tasks]);
 
   // live search
   useEffect(() => {
@@ -58,7 +57,7 @@ export function Project(props) {
       <Container>
         <Row>
           <Col12>
-            <Header>{data['title']}</Header>
+            <Header>{data !== undefined ? data['title'] : 'seu projeto'}</Header>
           </Col12>
         </Row>
         <Row>
@@ -73,22 +72,20 @@ export function Project(props) {
         </Row>
         <Separator />
         <Row>
-          {tasks.map(({id, status, title, description, project_id}) =>
-            <CardTarefa 
-              key={id} 
-              id={id} 
-              status={status} 
-              title={title} 
-              description={description}
-              projectId={project_id}
-            />
-          )}
+          {tasks !== undefined ?
+            <>
+            {tasks.map(({id, status, title, description, project_id}) =>
+              <CardTarefa 
+                key={id} 
+                id={id} 
+                status={status} 
+                title={title} 
+                description={description}
+                projectId={project_id}
+              />
+            )}</> : <></>}
         </Row>
       </Container>
     </>
   );
 }
-
-export default withAuthenticationRequired(Project, {
-  onRedirecting: () => <Loading />,
-});

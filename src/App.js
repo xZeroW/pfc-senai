@@ -6,6 +6,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import GlobalStyle from 'styles/global';
 import history from '_helpers/history';
 import Loading from 'components/Loading';
+import PrivateRoute from '_components/private-route';
 
 import Home from 'pages/Home';
 import Dashboard from 'pages/Dashboard';
@@ -28,8 +29,8 @@ function App() {
       <GlobalStyle />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/project/:id" component={Project} />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/project/:id" component={Project} />
       </Switch>
     </Router>
   );
