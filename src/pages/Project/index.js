@@ -37,7 +37,7 @@ export default function Project(props) {
         });
     };
     fetchData();
-  }, [tasks]);
+  }, []);
 
   // live search
   useEffect(() => {
