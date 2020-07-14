@@ -48,8 +48,6 @@ export default function Dashboard() {
     }
   }, [filterInput]);
 
-  console.log(config.API_URL);
-
   return (
     <>
       { showModal && <Modal tipo='projeto' showModal={showModal} setShowModal={setShowModal} />}
