@@ -38,11 +38,11 @@ export function Modal({ projectId, tipo, showModal, setShowModal }) {
           validationSchema={Yup.object().shape({
             title: Yup.string()
               .max(15, 'Limite de 15 caracteres atingido.')
-              .matches(/^[A-Za-z0-9 ]+$/, 'Caracteres especiais não são permitidos.')
+              .matches(/^[A-Za-z0-9áàâãêéíóôúçÁÀÂÃÉÈÊÍÓÔÚÇ ]+$/, 'Caracteres especiais não são permitidos.')
               .required('Título é requerido.'),
             description: Yup.string()
               .max(50, 'Limite de 50 caracteres atingido.')
-              .matches(/^[A-Za-z0-9 ]+$/, 'Caracteres especiais não são permitidos.')
+              .matches(/^[A-Za-z0-9áàâãêéíóôúçÁÀÂÃÉÈÊÍÓÔÚÇ ]+$/, 'Caracteres especiais não são permitidos.')
               .required('Descrição é requerido.'),
             completion_date: Yup.date()
               .required('Data de entrega é requirido.'),
