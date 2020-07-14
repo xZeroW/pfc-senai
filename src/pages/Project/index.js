@@ -74,13 +74,14 @@ export default function Project(props) {
         <Row>
           {tasks !== undefined ?
             <>
-            {tasks.map(({id, status, title, description, project_id}) =>
+            {tasks.map(({id, status, title, description, completion_date, project_id}) =>
               <CardTarefa 
                 key={id} 
                 id={id} 
                 status={status} 
                 title={title} 
                 description={description}
+                completion_date={completion_date}
                 projectId={project_id}
               />
             )}</> : <></>}

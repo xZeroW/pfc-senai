@@ -167,18 +167,17 @@ export function CardTarefa({ id, status, title, description, completion_date, pr
                   to="#"
                   onClick={async () => {
                     const token = await getAccessTokenSilently();
-                    Axios.patch(
-                      config.API_URL + `/tasks/${id}`,
-                      { status: 1 },
-                      { headers: { Authorization: `Bearer ${token}` } }
-                    )
-                      .then(res => {
-                        if (res.status === 200) {
-                          window.location.reload(true);
+                    Axios.patch( config.API_URL + `/tasks/${id}`, { status: 1 }, { headers: { Authorization: `Bearer ${token}` } })
+                      .then(
+                        res => {
+                          if (res.status === 200){
+                            window.location.reload(true);
+                          }
                         }
-                      })
+                      )
                       .catch(setShowErrorModal(true));
-                  }}
+                  }
+                  }
                 >
                   <BsApp
                     title="Completar?"
