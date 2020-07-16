@@ -37,15 +37,14 @@ export function Modal({ projectId, tipo, showModal, setShowModal }) {
           }}
           validationSchema={Yup.object().shape({
             title: Yup.string()
-              .max(15, 'Limite de 15 caracteres atingido.')
+              .max(25, 'Limite de 25 caracteres atingido.')
               .matches(/^[A-Za-z0-9áàâãêéíóôúçÁÀÂÃÉÈÊÍÓÔÚÇ ]+$/, 'Caracteres especiais não são permitidos.')
-              .required('Título é requerido.'),
+              .required('Título é necessário.'),
             description: Yup.string()
               .max(50, 'Limite de 50 caracteres atingido.')
-              .matches(/^[A-Za-z0-9áàâãêéíóôúçÁÀÂÃÉÈÊÍÓÔÚÇ ]+$/, 'Caracteres especiais não são permitidos.')
-              .required('Descrição é requerido.'),
+              .matches(/^[A-Za-z0-9áàâãêéíóôúçÁÀÂÃÉÈÊÍÓÔÚÇ ]+$/, 'Caracteres especiais não são permitidos.'),
             completion_date: Yup.date()
-              .required('Data de entrega é requirido.'),
+              .required('Data de entrega é necessária.'),
             status: Yup.bool()
               .required()
           })}
@@ -71,7 +70,7 @@ export function Modal({ projectId, tipo, showModal, setShowModal }) {
                 <ErrorMessage name="title" component="div" className="invalid-feedback" />
               </div>
               <div className="form-group">
-                <Field name="description" type="text" className={'form-control form-control-user' + (errors.description && touched.description ? ' is-invalid' : '')} placeholder="Descrição" />
+                <Field name="description" component="textarea" rows="3" style={{ resize: 'none' }} className={'form-control form-control-user' + (errors.description && touched.description ? ' is-invalid' : '')} placeholder="Descrição" />
                 <ErrorMessage name="description" component="div" className="invalid-feedback" />
               </div>
               <div className="form-group">
