@@ -3,10 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const Container = styled.div.attrs({
   className: 'navbar fixed-top'
-})`
-  background-color: #ffffff;
-  box-shadow: 0px 0px 5px grey;
-`;
+})``;
 
 export const Logo = styled(Link)`
   margin-right: auto;
